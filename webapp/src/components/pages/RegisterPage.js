@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom'
 
 import '../../App.css'
@@ -7,6 +8,9 @@ export default function SignUpPage() {
 
     return (
         <div className="text-center m-5-auto">
+                        <Helmet>
+                <title>Register</title>
+            </Helmet>
             <h2>Join us</h2>
             <h5>Create your personal account</h5>
             <form action="/home">

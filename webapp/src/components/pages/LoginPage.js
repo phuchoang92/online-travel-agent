@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom'
 
 import '../../App.css'
@@ -6,6 +7,9 @@ import '../../App.css'
 export default function SignInPage() {
     return (
         <div className="text-center m-5-auto">
+                        <Helmet>
+                <title>Login</title>
+            </Helmet>
             <h2>Sign in to us</h2>
             <form action="/home">
                 <p>

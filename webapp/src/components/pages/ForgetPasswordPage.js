@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom'
 
 import '../../App.css'
@@ -6,6 +7,9 @@ import '../../App.css'
 export default function ForgetPasswordPage() {
     return (
         <div className="text-center m-5-auto">
+                        <Helmet>
+                <title>Password Helper</title>
+            </Helmet>
             <h2>Reset your password</h2>
             <h5>Enter your email address and we will send you a new password</h5>
             <form action="/login">
