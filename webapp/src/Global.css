@@ -4,7 +4,7 @@
   
   .left-class {   
     width: 260px;
-    
+    float: left;
     background-color: beige;
 
   }
@@ -13,9 +13,10 @@
     margin-left: 50px;
   }
 
-  .top-class{
-
+  .dropdown{
+    float: right;
   }
+
 
 
   .link {

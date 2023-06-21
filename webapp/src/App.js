@@ -12,6 +12,7 @@ import List from "./components/pages/list/List";
 import './App.css'
 
 
+
 export default function App() {
     return (
         <Router>
@@ -31,7 +32,9 @@ export default function App() {
 
 const Footer = () => {
     return (
-        <p className="text-center" style={ FooterStyle }>Designed & coded by <a href="https://izemspot.netlify.com" target="_blank" rel="noopener noreferrer">IZEMSPOT</a></p>
+        <p className="text-center" style={ FooterStyle }>
+            Designed & coded by <a href="https://www.facebook.com/profile.php?id=100012666930591" target="_blank" rel="noopener noreferrer">Group 9</a>
+            </p>
     )
 }
 
