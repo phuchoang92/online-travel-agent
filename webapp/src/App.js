@@ -1,13 +1,13 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
-import LandingPage from './components/pages/LandingPage'
-import LoginPage from './components/pages/LoginPage'
-import RegisterPage from './components/pages/RegisterPage'
-import ForgetPasswordPage from './components/pages/ForgetPasswordPage'
-import HomePage from './components/pages/HomePage'
-import Hotel from "./components/pages/hotel/Hotel";
-import List from "./components/pages/list/List";
+import LandingPage from './pages/LandingPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import ForgetPasswordPage from './pages/ForgetPasswordPage'
+import HomePage from './pages/HomePage'
+import Hotel from "./pages/hotel/Hotel";
+import List from "./pages/list/List";
 
 import './App.css'
 

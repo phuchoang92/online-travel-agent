@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet';
 import {BrowserRouter, Link} from 'react-router-dom'
-import '../../Global.css'
+import '../Global.css'
 import SignInPage from './LoginPage';
 
 export default function HomePage() {
@@ -15,9 +15,9 @@ export default function HomePage() {
 
             <div className="left-class">
                 <a href="home" className="link">Home page</a>
-                <a href="#" className="link">Room map</a>
-                <a href="#" className="link">Fellow guest</a>
-                <a href="#" className="link">Group guest
+                <a href="src/pages/HomePage#" className="link">Room map</a>
+                <a href="src/pages/HomePage#" className="link">Fellow guest</a>
+                <a href="src/pages/HomePage#" className="link">Group guest
                 <select className="dropdown">
                         <option value=""></option>
                         <option value="group1">g1</option>
@@ -25,8 +25,8 @@ export default function HomePage() {
                         <option value="group3">g3</option>
 
                     </select></a>
-                <a href="#" className="link">Reception</a>
-                <a href="#" className="link">Rooms                
+                <a href="src/pages/HomePage#" className="link">Reception</a>
+                <a href="src/pages/HomePage#" className="link">Rooms
                     <select className="dropdown">
                         <option value=""></option>
                         <option value="101">101</option>
@@ -38,8 +38,8 @@ export default function HomePage() {
                         <option value="107">107</option>
                     </select></a>
 
-                <a href="#" className="link">Statistical</a>
-                <a href="/" className="link">Log out</a>
+                <a href="src/pages/HomePage#" className="link">Statistical</a>
+                <a href="/src/pages" className="link">Log out</a>
             </div>
             <div className="center-class">
                 <h1 className="main-title home-page-title">welcome</h1>

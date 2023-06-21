@@ -2,15 +2,15 @@ import React from 'react'
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom'
 
-import '../../App.css'
-import BackgroundImage from '../../assets/images/bg.png'
+import '../App.css'
+import BackgroundImage from '../assets/images/bg.png'
 
 export default function LandingPage() {
     return (
-        <header style={ HeaderStyle }>  
+        <header style={ HeaderStyle }>
                     <Helmet>
                 <title>Landing</title>
-            </Helmet> 
+            </Helmet>
             <h1 className="main-title text-center">login / register page</h1>
             <p className="main-para text-center">join us now and don't waste time</p>
             <div className="buttons text-center">
