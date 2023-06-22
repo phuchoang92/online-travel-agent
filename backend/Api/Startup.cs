@@ -1,4 +1,5 @@
 using Api.Database;
+using Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +36,8 @@ namespace Api
             {
                 option.UseSqlServer(Configuration.GetConnectionString("MyDb"));
             });
+
+            services.AddScoped<IRoomRepository, RoomRepository>();
 
 
             services.AddSwaggerGen(c =>

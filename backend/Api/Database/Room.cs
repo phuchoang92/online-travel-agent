@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,6 +18,12 @@ namespace Api.Database
         [Required]
         public byte Status { get; set; }
         public byte Style { get; set; }
+        public ICollection<BookingDetail> BookingDetails { get; set; }
+
+        public Room()
+        {
+            BookingDetails = new List<BookingDetail>();
+        }
 
 
     }
