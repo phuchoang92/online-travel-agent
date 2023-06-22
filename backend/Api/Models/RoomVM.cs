@@ -1,16 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Api.Models
 {
-    public class RoomModel
+    public class RoomVM
     {
-        [Required]
-        [MaxLength(10)]
+        public Guid RoomID { get; set; }
         public string RoomNumber { get; set; }
-        [Required]
         public int Price { get; set; }
-        [Required]
         public byte Status { get; set; }
         public byte Style { get; set; }
     }
