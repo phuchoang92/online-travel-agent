@@ -124,3 +124,13 @@ D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.dll
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\ref\Api.dll
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.pdb
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.genruntimeconfig.cache
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.csproj.AssemblyReference.cache
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.AssemblyInfoInputs.cache
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.AssemblyInfo.cs
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.csproj.CoreCompileInputs.cache
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.MvcApplicationPartsAssemblyInfo.cs
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.MvcApplicationPartsAssemblyInfo.cache
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.dll
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\refint\Api.dll
+C:\myproject\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.pdb
