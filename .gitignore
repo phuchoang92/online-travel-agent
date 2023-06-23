@@ -8,3 +8,4 @@ appsettings.json
 /backend/Api/obj/
 
 backend/Api/Api.csproj.user
+*.dll
