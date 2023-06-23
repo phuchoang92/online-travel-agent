@@ -14,7 +14,7 @@ namespace Api.Services
         {
             _context = context;
         }
-        public RoomVM Add(RoomModel room)
+        public RoomVM Add(RoomVM room)
         {
             var _room = new Room
             {
@@ -81,7 +81,7 @@ namespace Api.Services
 
             return null;
         }
-        public void Update(RoomModel room)
+        public void Update(RoomVM room)
         {
             var _room = _context.Rooms.SingleOrDefault(r => r.RoomID == room.RoomID);
             _room.RoomNumber = room.RoomNumber;

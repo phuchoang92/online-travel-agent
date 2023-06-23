@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
-    [Route("api/[Controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class RoomController : ControllerBase
+    public class BookingController : ControllerBase
     {
-        private readonly IRoomRepository _roomRep;
-        public RoomController(IRoomRepository roomRepository)
+        private readonly IBookingRepository _bookingRep;
+        public BookingController(IBookingRepository bookingRepository)
         {
-            _roomRep = roomRepository;
+            _bookingRep = bookingRepository;
         }
 
         [HttpGet]
@@ -24,7 +24,7 @@ namespace Api.Controllers
         {
             try
             {
-                return Ok(_roomRep.GetAll());
+                return Ok(_bookingRep.GetAll());
             }
             catch
             {
@@ -37,11 +37,12 @@ namespace Api.Controllers
         {
             try
             {
-                var data = _roomRep.GetById(id);
-                if(data != null)
+                var data = _bookingRep.GetById(id);
+                if (data != null)
                 {
                     return Ok(data);
-                }else return NotFound();
+                }
+                else return NotFound();
             }
             catch
             {
@@ -50,16 +51,16 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, RoomVM room)
+        public IActionResult Update(Guid id, BookingVM booking)
         {
-            if(id != room.RoomID)
+            if (id != booking.BookingId)
             {
                 return BadRequest();
             }
 
             try
             {
-                _roomRep.Update(room);
+                _bookingRep.Update(booking);
                 return NoContent();
             }
             catch
@@ -73,7 +74,7 @@ namespace Api.Controllers
         {
             try
             {
-                _roomRep.Delete(id);
+                _bookingRep.Delete(id);
                 return Ok();
             }
             catch
@@ -83,11 +84,11 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(RoomVM room)
+        public IActionResult Add(BookingVM booking)
         {
             try
             {
-                return Ok(_roomRep.Add(room));
+                return Ok(_bookingRep.Add(booking));
             }
             catch
             {

@@ -10,8 +10,8 @@ namespace Api.Services
     {
         List<RoomVM> GetAll();
         RoomVM GetById(Guid id);
-        RoomVM Add(RoomModel room);
-        void Update(RoomModel room);
+        RoomVM Add(RoomVM room);
+        void Update(RoomVM room);
         void Delete(Guid id);
     }
 }
