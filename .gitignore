@@ -3,4 +3,8 @@
 *.vsidx
 
 appsettings.json
-backend/.vs/
+/backend/.vs/
+/backend/Api/bin/
+/backend/Api/obj/
+
+backend/Api/Api.csproj.user
