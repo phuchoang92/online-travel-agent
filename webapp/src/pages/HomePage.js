@@ -23,7 +23,6 @@ export default function HomePage() {
                         <option value="group1">g1</option>
                         <option value="group2">g2</option>
                         <option value="group3">g3</option>
-
                     </select></a>
                 <a href="src/pages/HomePage#" className="link">Reception</a>
                 <a href="src/pages/HomePage#" className="link">Rooms
