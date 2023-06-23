@@ -3,9 +3,13 @@
 *.vsidx
 
 appsettings.json
-/backend/.vs/
-/backend/Api/bin/
-/backend/Api/obj/
+backend/.vs/
+backend/Api/bin/
+backend/Api/obj/
 
 backend/Api/Api.csproj.user
 *.dll
+*.pdb
+*.dll
+*.dll
+backend/Api/bin/Debug/net5.0/appsettings.json
