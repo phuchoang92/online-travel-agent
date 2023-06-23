@@ -37,8 +37,9 @@ namespace Api
                 option.UseSqlServer(Configuration.GetConnectionString("MyDb"));
             });
 
+            services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
-
+            
 
             services.AddSwaggerGen(c =>
             {

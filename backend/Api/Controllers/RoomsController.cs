@@ -43,7 +43,7 @@ namespace Api.Controllers
             {
                 var room = new Room
                 {
-                    RoomID = model.RoomID,
+                    
                     RoomNumber = model.RoomNumber,
                     Price = model.Price,
                     Status = model.Status,
