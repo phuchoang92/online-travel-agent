@@ -7,6 +7,7 @@ import Home from "./pages/home/Home";
 import List from "./pages/list/List";
 import Hotel from "./pages/hotel/Hotel";
 import Register from "./components/register/Register";
+import Login from "./components/register/Login";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/hotels" element={<List/>}/>
         <Route path="/hotels:id" element={<Hotel/>}/>
         <Route path="/register" element={<Register />}/>
+        <Route path="/login" element={<Login />}/>
       </Routes>
     </BrowserRouter>
   );
