@@ -39,3 +39,4 @@ backend/Api/obj/Api.csproj.nuget.dgspec.json
 backend/Api/obj/Api.csproj.nuget.dgspec.json
 backend/Api/obj/project.assets.json
 backend/Api/obj/project.nuget.cache
+web-ui/yarn.lock
