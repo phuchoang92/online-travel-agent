@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pIWYYYiz8mgh4/Nt/haJb1tlfXiw7ia7wDfnPhv418Qg0scq7V9jw9Zh+YO5Dup/kuEEpTwl1+Fom1Hascl67g==",
+  "dgSpecHash": "s+w3xKwRK1tEOKPCJnxw9hdhtDDJ5I/9XhxWrb6oy6pG1y6dXnmUWUz4cZ1j1KK/mfrLXGRw6yfyyCUB6qC/SA==",
   "success": true,
   "projectFilePath": "C:\\myproject\\online-travel-agent\\backend\\Api\\Api.csproj",
   "expectedPackageFiles": [
@@ -106,11 +106,7 @@
     "C:\\Users\\chang\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\chang\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\chang\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\chang\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\chang\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\chang\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+    "C:\\Users\\chang\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

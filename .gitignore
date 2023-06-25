@@ -26,3 +26,16 @@
 /backend/Api/obj/Debug/net5.0/Api.genruntimeconfig.cache
 /backend/Api/Api.csproj.user
 /.vscode/
+*.vsidx
+*.json
+*.json
+backend/Api/obj/project.assets.json
+backend/Api/obj/Api.csproj.nuget.dgspec.json
+backend/Api/obj/project.assets.json
+web-ui/.idea/web-ui.iml
+backend/Api/obj/project.assets.json
+backend/Api/obj/project.nuget.cache
+backend/Api/obj/Api.csproj.nuget.dgspec.json
+backend/Api/obj/Api.csproj.nuget.dgspec.json
+backend/Api/obj/project.assets.json
+backend/Api/obj/project.nuget.cache
