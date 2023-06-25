@@ -1,7 +1,7 @@
 import "./register.css";
 import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from "../../context/AuthProvider";
-import axios from '../../api/axios';
+import AuthContext from "../../../context/AuthProvider";
+import axios from '../../../api/axios';
 
 const LOGIN_URL = '/auth';
 
@@ -57,9 +57,9 @@ const Login = () => {
     }
 
     return (
-        <>
+        <div className="container">
             {success ? (
-                <section>
+                <section className="section">
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
@@ -67,10 +67,10 @@ const Login = () => {
                     </p>
                 </section>
             ) : (
-                <section>
+                <section className="section">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Sign In</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="form">
                         <label htmlFor="username">Username:</label>
                         <input
                             type="text"
@@ -96,12 +96,12 @@ const Login = () => {
                         Need an Account?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Sign Up</a>
+                            <a href="/register">Sign Up</a>
                         </span>
                     </p>
                 </section>
             )}
-        </>
+        </div>
     )
 }
 
