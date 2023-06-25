@@ -3,7 +3,7 @@ import Sidebar from "../../../components/adminPage/sidebar/Sidebar";
 import Navbar from "../../../components/adminPage/navbar/Navbar";
 import Datatable from "../../../components/adminPage/datatable/Datatable";
 
-const List = () => {
+const AdminList = () => {
   return (
     <div className="list">
       <Sidebar/>
@@ -15,4 +15,4 @@ const List = () => {
   )
 }
 
-export default List
+export default AdminList;

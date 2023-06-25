@@ -23,27 +23,28 @@ function App() {
         <Route path="/hotels/:id" element={<Hotel />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+
+        <Route path="/admin/">
+          <Route index element={<AdminHome />} />
+          <Route path="login" element={<AdminLogin />} />
+          <Route path="users">
+            <Route index element={<AdminList />} />
+            <Route path=":userId" element={<Single />} />
+            <Route
+              path="new"
+              element={<New inputs={userInputs} title="Add New User" />}
+            />
+          </Route>
+          <Route path="products">
+            <Route index element={<List />} />
+            <Route path=":productId" element={<Single />} />
+            <Route
+              path="new"
+              element={<New inputs={productInputs} title="Add New Product" />}
+            />
+          </Route>
+        </Route>
       </Routes>
-      <Route path="/admin/">
-        <Route index element={<AdminHome />} />
-        <Route path="login" element={<Login />} />
-        <Route path="users">
-          <Route index element={<List />} />
-          <Route path=":userId" element={<Single />} />
-          <Route
-            path="new"
-            element={<New inputs={userInputs} title="Add New User" />}
-          />
-        </Route>
-        <Route path="products">
-          <Route index element={<List />} />
-          <Route path=":productId" element={<Single />} />
-          <Route
-            path="new"
-            element={<New inputs={productInputs} title="Add New Product" />}
-          />
-        </Route>
-      </Route>
     </BrowserRouter>
   );
 }
