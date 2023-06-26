@@ -1,5 +1,5 @@
 import Modal from "./Modal";
-import useRentModal from "../../hooks/useRentModal";
+import useRoomModal from "../../hooks/useRoomModal";
 import React , {useMemo, useState} from "react";
 import {useForm} from "react-hook-form";
 import { toast } from 'react-hot-toast';
@@ -21,8 +21,8 @@ const STEPS =  {
     PRICE : 5
 }
 
-const RentModal = (props) => {
-    const rentModal = useRentModal()
+const NewRoomModal = (props) => {
+    const rentModal = useRoomModal()
 
     const [isLoading, setIsLoading] = useState(false);
     const [step, setStep] = useState(STEPS.CATEGORY);
@@ -276,4 +276,4 @@ const RentModal = (props) => {
     );
 }
 
-export default RentModal;
+export default NewRoomModal;

@@ -1,5 +1,5 @@
 
-import { useCallback, useState } from "react";
+import {useCallback, useContext, useState} from "react";
 import {
     useForm
 } from "react-hook-form";
@@ -12,10 +12,13 @@ import Heading from "../Heading";
 import Button from "../Button";
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from "../../hooks/useRegisterModal";
+import {AuthContext} from "../../context/AuthProvider";
+import {variables} from "../../Variables";
 
 const LoginModal = () => {
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
+    const { loading, error, dispatch } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -33,6 +36,31 @@ const LoginModal = () => {
 
     const onSubmit = (data) => {
             setIsLoading(true);
+
+            dispatch({ type: "LOGIN_START" });
+
+            try {
+                console.log(data);
+                fetch(variables.API_URL + 'Login/Login', {
+                    method: 'POST',
+                    mode:"no-cors",
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Headers': 'Content-Type'
+                    },
+                    body: {
+                        "username": data.username,
+                        "password": data.password
+                    }
+                }).then(res => res.json())
+                    .then((result) => {
+                        console.log(result)
+                    });
+            }catch (err) {
+                dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+            }
 
             // signIn('credentials', {
             //     ...data,

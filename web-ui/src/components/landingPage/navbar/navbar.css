@@ -1,27 +1,16 @@
 .navbar{
-  height: 50px;
+  @apply h-[50px] flex justify-center;
   background-color: #003580;
-  display: flex;
-  justify-content: center;
 }
 
 .navContainer{
-  width: 100%;
-  max-width: 1024px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @apply w-full max-w-screen-lg text-white flex items-center justify-between
 }
 
 .logo{
-  font-weight: 500;
+  @apply font-medium text-lg;
 }
 
 .navButton{
-  margin-left: 20px;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  color: #003580;
+  @apply ml-[20px] border-none cursor-pointer border-blue-900 py-[5px] px-[10px] text-lg;
 }
