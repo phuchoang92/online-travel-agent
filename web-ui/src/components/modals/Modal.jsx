@@ -64,7 +64,7 @@ const Modal = ({
                                     <IoMdClose size={18} />
                                 </button>
                                 <div className="below-button">
-                                    List Home
+                                    {title}
                                 </div>
                             </div>
                             <div className="body-modal">
@@ -84,6 +84,7 @@ const Modal = ({
                                         onClick={handleSubmit}
                                         label={actionLabel}></Button>
                                 </div>
+                                {footer}
                             </div>
                         </div>
                     </div>

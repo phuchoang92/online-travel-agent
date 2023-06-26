@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "./navbar.css"
+import {useCallback, useContext} from "react";
+import {AuthContext} from "../../../context/AuthProvider";
+import useLoginModal from "../../../hooks/useLoginModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const loginModal = useLoginModal();
 
   const handleRegisterClick = () => {
     navigate("/register"); // Chuyển đến trang '/other'
@@ -16,9 +21,14 @@ const Navbar = () => {
     navigate("/"); // Chuyển đến trang '/other'
   };
 
-  const adminRedirect = () => {
-    navigate("/admin");
-  }
+  const adminRedirect = useCallback(() => {
+    if (user){
+      navigate("/admin");
+    }
+    else {
+      loginModal.onOpen();
+    }
+  },[user]);
 
   return (
     <div className="navbar">

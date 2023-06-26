@@ -2,15 +2,13 @@ import Modal from "./Modal";
 import useRentModal from "../../hooks/useRentModal";
 import React , {useMemo, useState} from "react";
 import {useForm} from "react-hook-form";
-import {FieldValues} from "react-hook-form";
-import {SubmitHandler} from "react-hook-form";
 import { toast } from 'react-hot-toast';
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Counter from "../inputs/Counter";
 import CountrySelect from "../inputs/CountrySelect";
 import CategoryInput from '../inputs/CategoryInput';
-import {categories} from "../navbar/Categories";
+import {categories} from "../inputs/Categories";
 import axios from "axios";
 import "./modal.css"
 
@@ -78,7 +76,7 @@ const RentModal = (props) => {
         setStep((value) => value + 1);
     }
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const onSubmit = (data) => {
         if (step !== STEPS.PRICE) {
             return onNext();
         }

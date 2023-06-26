@@ -1,14 +1,10 @@
 
 import { useCallback, useState } from "react";
-import { toast } from "react-hot-toast";
 import {
-    FieldValues,
-    SubmitHandler,
     useForm
 } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
-
 
 import Modal from "./Modal";
 import Input from "../inputs/Input";
@@ -35,8 +31,7 @@ const LoginModal = () => {
         },
     });
 
-    const onSubmit: SubmitHandler<FieldValues> =
-        (data) => {
+    const onSubmit = (data) => {
             setIsLoading(true);
 
             // signIn('credentials', {
@@ -66,7 +61,7 @@ const LoginModal = () => {
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Heading
-                title="Welcome back"
+                title="Welcome back host"
                 subtitle="Login to your account!"
             />
             <Input
@@ -102,16 +97,14 @@ const LoginModal = () => {
                 label="Continue with Github"
                 icon={AiFillGithub}
             />
-            <div className="
-      text-neutral-500 text-center mt-4 font-light">
+            <div className="text-neutral-500 text-center mt-4 font-light">
                 <p>First time using Airbnb?
                     <span
                         onClick={onToggle}
                         className="
-              text-neutral-800
-              cursor-pointer
-              hover:underline
-            "
+                              text-neutral-800
+                              cursor-pointer
+                              hover:underline"
                     > Create an account</span>
                 </p>
             </div>
