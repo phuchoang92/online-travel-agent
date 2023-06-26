@@ -18,11 +18,15 @@ namespace Api.Database
         [Required]
         public byte Status { get; set; }
         public byte Style { get; set; }
+        public string LinkImg { get; set; }
+        public string Description { get; set; }
         public ICollection<BookingDetail> BookingDetails { get; set; }
+        public ICollection<Room_Infras> Room_Infras { get; set; }
 
         public Room()
         {
             BookingDetails = new List<BookingDetail>();
+            Room_Infras = new List<Room_Infras>();
         }
 
 

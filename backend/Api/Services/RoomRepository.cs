@@ -10,19 +10,25 @@ namespace Api.Services
     public class RoomRepository : IRoomRepository
     {
         private readonly MyDbContext _context;
+
+        public static int PAGESIZE { get; set; } = 10;
         public RoomRepository(MyDbContext context)
         {
             _context = context;
         }
         public RoomVM Add(RoomVM room)
         {
+       
             var _room = new Room
             {
-                RoomID = room.RoomID,
+                RoomID = Guid.NewGuid(),
                 RoomNumber = room.RoomNumber,
                 Price = room.Price,
                 Status = room.Status,
-                Style = room.Style
+                Style = room.Style,
+                LinkImg = room.LinkImg,
+                Description = room.Description,
+                
             };
 
             _context.Add(_room);
@@ -34,7 +40,9 @@ namespace Api.Services
                 RoomNumber = _room.RoomNumber,
                 Price = _room.Price,
                 Status = _room.Status,
-                Style = _room.Style
+                Style = _room.Style,
+                LinkImg = _room.LinkImg,
+                Description = _room.Description
             };
         }
 
@@ -58,10 +66,65 @@ namespace Api.Services
                 Price = r.Price,
                 Status = r.Status,
                 Style = r.Style,
+                LinkImg = r.LinkImg,
+                Description = r.Description
                 
         });
 
             return rooms.ToList();
+        }
+
+        public List<RoomSearch> GetAll(string search, int? from, int? to, string? sortBy, int page = 1)
+        {
+            var allRooms = _context.Rooms.AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                allRooms = allRooms.Where(r => r.RoomNumber.Contains(search));
+            }
+
+            #region Filtering
+
+            if (from.HasValue)
+            {
+                allRooms = allRooms.Where(r => r.Price >= from);
+            }
+            if (to.HasValue)
+            {
+                allRooms = allRooms.Where(r => r.Price <= to);
+            }
+
+            #endregion
+
+            #region sort
+            if (!string.IsNullOrEmpty(sortBy))
+            {
+                switch (sortBy)
+                {   
+                    case "roomNumber_desc": allRooms = allRooms.OrderByDescending(r => r.RoomNumber); break;
+                    case "roomNumber_asc": allRooms = allRooms.OrderBy(r => r.RoomNumber); break;
+                    case "priceNumber_desc": allRooms = allRooms.OrderByDescending(r => r.Price); break;
+                    case "priceNumber_asc": allRooms = allRooms.OrderBy(r => r.Price); break;
+                }
+            }
+            #endregion
+
+            #region Paging
+            allRooms = allRooms.Skip( (page - 1) * PAGESIZE).Take(PAGESIZE);
+            #endregion
+
+            var results = allRooms.Select(r => new RoomSearch
+            {
+                RoomNumber = r.RoomNumber,
+                Price = r.Price,
+                Status = r.Status,
+                Style = r.Style,
+                LinkImg = r.LinkImg,
+                Description = r.Description,
+            });
+
+            return results.ToList();
+
         }
 
         public RoomVM GetById(Guid id)
@@ -75,7 +138,9 @@ namespace Api.Services
                     RoomNumber = room.RoomNumber,
                     Price = room.Price,
                     Status = room.Status,
-                    Style = room.Style
+                    Style = room.Style,
+                    LinkImg = room.LinkImg,
+                    Description = room.Description
                 };
             }
 
@@ -88,6 +153,8 @@ namespace Api.Services
             _room.Status = room.Status;
             _room.Style = room.Style;
             _room.Price = room.Price;
+            _room.LinkImg = room.LinkImg;
+            _room.Description = room.Description;
             _context.SaveChanges();
         }
     }

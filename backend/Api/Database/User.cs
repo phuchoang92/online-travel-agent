@@ -11,17 +11,18 @@ namespace Api.Database
         [Key]
         public Guid Id { get; set; }
         [Required]
-        [MaxLength(25)]
-        public string Name { get; set; }
+        [MaxLength(50)]
+        public string Username { get; set; }
         [Required]
-        [MaxLength(25)]
+        [MaxLength(250)]
         public string Password { get; set; }
         public int Role {get; set; }
         public ICollection<BookingDetail> BookingDetails { get; set; }
-
+        public ICollection<UserDetail> UserDetails { get; set; }
         public User()
         {
             BookingDetails = new List<BookingDetail>();
+            UserDetails = new List<UserDetail>();
         }
     }
 }

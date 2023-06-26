@@ -63,6 +63,41 @@ namespace Api.Services
             return bookings.ToList();
         }
 
+        public List<BookingSearch> GetAll(DateTime? from, DateTime? to, string sortBy, int page)
+        {
+            var allBookings = _context.Bookings.AsQueryable();
+
+            #region Filtetring
+            if (from.HasValue)
+            {
+                allBookings = allBookings.Where(b => b.BookingDate >= from);
+            }
+            if (to.HasValue)
+            {
+                allBookings = allBookings.Where(b => b.BookingDate <= to);
+            }
+            #endregion
+
+            if (!string.IsNullOrEmpty(sortBy))
+            {
+                switch (sortBy)
+                {
+                    case "date_desc": allBookings.OrderByDescending(b => b.BookingDate); break;
+                    case "date_asc": allBookings.OrderBy(b => b.BookingDate); break;
+                }
+            }
+
+            var results = allBookings.Select(_booking => new BookingSearch
+            {
+                BookingId = _booking.BookingId,
+                BookingDate = _booking.BookingDate,
+                status = _booking.status,
+                TotalCost = _booking.TotalCost
+            });
+
+            return results.ToList();
+        }
+
         public BookingVM GetById(Guid id)
         {
             var _booking = _context.Bookings.SingleOrDefault(b => b.BookingId == id);
