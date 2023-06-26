@@ -21,6 +21,7 @@ const Navbar = () => {
       <div className="navContainer">
         <span className="logo" onClick={handleLogoClick}>Booking</span>
         <div className="navItems">
+          <button className="navButton">List your Hotel</button>
           <button className="navButton" onClick={handleRegisterClick}>Register</button>
           <button className="navButton" onClick={handleLoginClick}>Login</button>
         </div>
