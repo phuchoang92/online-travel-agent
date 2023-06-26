@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import CustomTextInput from '../../../components/CustomTextInput';
+import CustomSort from '../../../components/CustomSort';
 const Home = () => {
   return (
     <SafeAreaView>
@@ -22,9 +23,6 @@ const Home = () => {
             style={styles.icon}
             source={require('../../../assets/icons/icon_bell.png')}
           />
-          <View>
-            <Text>aaa</Text>
-          </View>
         </TouchableOpacity>
         <TouchableOpacity>
           <Image
@@ -32,6 +30,9 @@ const Home = () => {
             source={require('../../../assets/icons/icon_chat.png')}
           />
         </TouchableOpacity>
+      </View>
+      <View style={styles.filterView}>
+        <CustomSort placeholder={'Nhap diem den, khach san,..'} />
       </View>
     </SafeAreaView>
   );
@@ -57,5 +58,9 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     marginRight: 5,
+  },
+  filterView: {
+    alignItems: 'center',
+    marginTop: 20,
   },
 });
