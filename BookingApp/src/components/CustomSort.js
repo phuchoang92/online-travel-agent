@@ -1,12 +1,49 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
-
+import SearchModal from './SearchModal';
+import DatePickerModal from './DatePickerModal';
 const CustomSort = ({placeholder, style}) => {
   const [text, setText] = useState('');
   const handleTextChange = newText => {
     setText(newText);
   };
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const hideModal = () => {
+    setIsModalVisible(false);
+  };
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const handleLocationSelect = location => {
+    setSelectedLocation(location);
+    setIsModalVisible(false);
+  };
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+  const showDatePickerModal = () => {
+    setIsDatePickerVisible(true);
+  };
+
+  const hideDatePickerModal = () => {
+    setIsDatePickerVisible(false);
+  };
+  // const formatDate = date => {
+  //   const day = date.getDate().toString().padStart(2, '0');
+  //   const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  //   const year = date.getFullYear().toString().slice(-2);
+
+  //   return `${day}/${month}/${year}`;
+  // };
+
+  const [selectedDate, setSelectedDate] = useState(null); // Thêm state selectedDate và khởi tạo ban đầu là null
+  const handleDateSelect = date => {
+    setSelectedDate(date);
+    setIsModalVisible(false);
+  };
+
   return (
     <View
       style={{
@@ -18,20 +55,24 @@ const CustomSort = ({placeholder, style}) => {
       <View style={styles.placeView}>
         <View>
           <View style={styles.container0}>
-            <Image
-              source={require('../assets/icons/icon_location.png')}
-              style={styles.iconLocation}
+            <TouchableOpacity onPress={showModal}>
+              <Image
+                source={require('../assets/icons/icon_location.png')}
+                style={styles.iconLocation}
+              />
+            </TouchableOpacity>
+            <SearchModal
+              isVisible={isModalVisible}
+              onClose={hideModal}
+              onLocationSelect={handleLocationSelect}
             />
+
             <Text style={styles.text}>Điểm đến, Khách sạn</Text>
           </View>
           <View style={styles.container2}>
-            <TextInput
-              placeholder={placeholder}
-              placeholderTextColor="#9F9F9F"
-              value={text}
-              style={styles.inputText}
-              onChangeText={handleTextChange}
-            />
+            <Text style={styles.dayText}>
+              {selectedLocation ? selectedLocation : 'Điểm đến, Khách sạn'}
+            </Text>
           </View>
         </View>
         <TouchableOpacity>
@@ -50,20 +91,35 @@ const CustomSort = ({placeholder, style}) => {
           }}>
           <View>
             <View style={styles.container}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={showDatePickerModal}>
                 <Image
                   source={require('../assets/icons/icon_calendar.png')}
                   style={styles.iconCalendear}
                 />
               </TouchableOpacity>
+              {isDatePickerVisible && (
+                <DatePickerModal
+                  isVisible={isDatePickerVisible}
+                  onClose={hideDatePickerModal}
+                  onDateSelect={handleDateSelect}
+                />
+              )}
               <Text style={styles.text}>Ngày Nhận Phòng</Text>
             </View>
             <View style={styles.bookingDay}>
-              <Text style={styles.dayText}>aa</Text>
+              <Text style={styles.dayText}>
+                {selectedDate ? selectedDate : 'Ngày nhận phòng'}
+              </Text>
             </View>
           </View>
           <View>
             <View style={styles.container3}>
+              <TouchableOpacity>
+                <Image
+                  source={require('../assets/icons/icon_night.png')}
+                  style={styles.iconCalendear}
+                />
+              </TouchableOpacity>
               <Text style={styles.text}>Số đêm nghỉ</Text>
             </View>
             <View style={styles.nightRelax}>
@@ -145,7 +201,7 @@ const styles = StyleSheet.create({
   container2: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 20,
+    marginLeft: 30,
   },
   iconLocation: {
     height: 30,
@@ -202,6 +258,7 @@ const styles = StyleSheet.create({
   nightRelax: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginLeft: 30,
   },
   container3: {
     flexDirection: 'row',
