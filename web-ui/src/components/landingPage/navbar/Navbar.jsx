@@ -16,11 +16,16 @@ const Navbar = () => {
     navigate("/"); // Chuyển đến trang '/other'
   };
 
+  const adminRedirect = () => {
+    navigate("/admin");
+  }
+
   return (
     <div className="navbar">
       <div className="navContainer">
         <span className="logo" onClick={handleLogoClick}>Booking</span>
         <div className="navItems">
+          <button className="navButton" onClick={adminRedirect}>List your Hotel</button>
           <button className="navButton" onClick={handleRegisterClick}>Register</button>
           <button className="navButton" onClick={handleLoginClick}>Login</button>
         </div>
