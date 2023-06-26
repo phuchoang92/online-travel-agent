@@ -12,4 +12,12 @@ namespace Api.Models
         public DateTime BookingDate { get; set; }
         public int TotalCost { get; set; }
     }
+
+    public class BookingSearch
+    {
+        public Guid BookingId { get; set; }
+        public byte status { get; set; }
+        public DateTime BookingDate { get; set; }
+        public int TotalCost { get; set; }
+    }
 }

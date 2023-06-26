@@ -70,7 +70,6 @@ D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Api.deps.json
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Api.runtimeconfig.json
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Api.runtimeconfig.dev.json
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Api.dll
-D:\online-travel-agent\backend\Api\bin\Debug\net5.0\ref\Api.dll
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Api.pdb
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Humanizer.dll
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
@@ -87,7 +86,6 @@ D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Microsoft.IdentityModel.Prot
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Microsoft.OpenApi.dll
-D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -116,7 +114,6 @@ D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.csproj.CoreCompileInputs
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.MvcApplicationPartsAssemblyInfo.cs
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.MvcApplicationPartsAssemblyInfo.cache
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\staticwebassets\Api.StaticWebAssets.Manifest.cache
-D:\online-travel-agent\backend\Api\obj\Debug\net5.0\staticwebassets\Api.StaticWebAssets.xml
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\scopedcss\bundle\Api.styles.css
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.RazorTargetAssemblyInfo.cache
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.csproj.CopyComplete
@@ -124,3 +121,10 @@ D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.dll
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\ref\Api.dll
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.pdb
 D:\online-travel-agent\backend\Api\obj\Debug\net5.0\Api.genruntimeconfig.cache
+D:\online-travel-agent\backend\Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\online-travel-agent\backend\Api\obj\Debug\net5.0\staticwebassets\Api.StaticWebAssets.Pack.cache
+D:\online-travel-agent\backend\Api\obj\Debug\net5.0\staticwebassets\msbuild.Api.Microsoft.AspNetCore.StaticWebAssets.props
+D:\online-travel-agent\backend\Api\obj\Debug\net5.0\staticwebassets\msbuild.build.Api.props
+D:\online-travel-agent\backend\Api\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.Api.props
+D:\online-travel-agent\backend\Api\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.Api.props
+D:\online-travel-agent\backend\Api\obj\Debug\net5.0\refint\Api.dll

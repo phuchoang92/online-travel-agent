@@ -32,6 +32,20 @@ namespace Api.Controllers
             }
         }
 
+        [HttpGet("search")]
+        public IActionResult getListSearch(string search, int? from, int? to, string? sortBy, int page = 1)
+        {
+            try
+            {
+                var result =_roomRep.GetAll(search, from, to, sortBy,page);
+                return Ok(result);
+            }
+            catch
+            {
+                return BadRequest("No Data");
+            }
+        }
+
         [HttpGet("{id}")]
         public IActionResult getById(Guid id)
         {

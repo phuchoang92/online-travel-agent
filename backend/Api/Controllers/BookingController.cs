@@ -32,6 +32,20 @@ namespace Api.Controllers
             }
         }
 
+        [HttpGet( "sortBy")]
+        public IActionResult getAll(DateTime? from, DateTime? to, string? sortBy, int page)
+        {
+            try
+            {
+                var result = _bookingRep.GetAll( from, to, sortBy, page);
+                return Ok(result);
+            }
+            catch
+            {
+                return BadRequest("No Data");
+            }
+        }
+
         [HttpGet("{id}")]
         public IActionResult getById(Guid id)
         {

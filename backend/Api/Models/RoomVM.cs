@@ -13,5 +13,17 @@ namespace Api.Models
         public int Price { get; set; }
         public byte Status { get; set; }
         public byte Style { get; set; }
+        public string LinkImg { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class RoomSearch
+    {
+        public string RoomNumber { get; set; }
+        public int Price { get; set; }
+        public byte Status { get; set; }
+        public byte Style { get; set; }
+        public string LinkImg { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -68,11 +68,71 @@ namespace Api.Migrations
                     b.ToTable("BookingDetail");
                 });
 
+            modelBuilder.Entity("Api.Database.Infras", b =>
+                {
+                    b.Property<Guid>("InfrasId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameItem")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("InfrasId");
+
+                    b.ToTable("Infras");
+                });
+
+            modelBuilder.Entity("Api.Database.RefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpiredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRevorked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("IssueAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("JwtId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshToken");
+                });
+
             modelBuilder.Entity("Api.Database.Room", b =>
                 {
                     b.Property<Guid>("RoomID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkImg")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -93,28 +153,65 @@ namespace Api.Migrations
                     b.ToTable("Room");
                 });
 
+            modelBuilder.Entity("Api.Database.Room_Infras", b =>
+                {
+                    b.Property<Guid>("RoomID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("InfrasId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoomID", "InfrasId");
+
+                    b.HasIndex("InfrasId");
+
+                    b.ToTable("Room_Infras");
+                });
+
             modelBuilder.Entity("Api.Database.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("Username")
+                        .IsUnique();
+
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Api.Database.UserDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserDetail");
                 });
 
             modelBuilder.Entity("Api.Database.BookingDetail", b =>
@@ -147,19 +244,72 @@ namespace Api.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Api.Database.RefreshToken", b =>
+                {
+                    b.HasOne("Api.Database.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Api.Database.Room_Infras", b =>
+                {
+                    b.HasOne("Api.Database.Infras", "Infras")
+                        .WithMany("Room_Infras")
+                        .HasForeignKey("InfrasId")
+                        .HasConstraintName("FK_Room_Infras_Infras")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api.Database.Room", "Room")
+                        .WithMany("Room_Infras")
+                        .HasForeignKey("RoomID")
+                        .HasConstraintName("FK_Room_Infras_Room")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Infras");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("Api.Database.UserDetail", b =>
+                {
+                    b.HasOne("Api.Database.User", "User")
+                        .WithMany("UserDetails")
+                        .HasForeignKey("Id")
+                        .HasConstraintName("FK_UserDetail_User")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Api.Database.Booking", b =>
                 {
                     b.Navigation("BookingDetails");
                 });
 
+            modelBuilder.Entity("Api.Database.Infras", b =>
+                {
+                    b.Navigation("Room_Infras");
+                });
+
             modelBuilder.Entity("Api.Database.Room", b =>
                 {
                     b.Navigation("BookingDetails");
+
+                    b.Navigation("Room_Infras");
                 });
 
             modelBuilder.Entity("Api.Database.User", b =>
                 {
                     b.Navigation("BookingDetails");
+
+                    b.Navigation("UserDetails");
                 });
 #pragma warning restore 612, 618
         }
