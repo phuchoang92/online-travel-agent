@@ -5,14 +5,14 @@ import Datatable from "../../../components/adminPage/datatable/Datatable";
 
 const AdminList = () => {
   return (
-    <div className="list">
-      <Sidebar/>
+    <div className="listAdmin">
+      <Sidebar />
       <div className="listContainer">
-        <Navbar/>
-        <Datatable/>
+        <Navbar />
+        <Datatable />
       </div>
     </div>
-  )
+  );
 }
 
 export default AdminList;

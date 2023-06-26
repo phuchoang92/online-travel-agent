@@ -8,9 +8,9 @@ import Table from "../../../components/adminPage/table/Table";
 
 const AdminHome = () => {
   return (
-    <div className="home">
+    <div className="homeAdmin">
       <Sidebar />
-      <div className="homeContainer">
+      <div className="homeAdmin__container">
         <Navbar />
         <div className="widgets">
           <Widget type="user" />

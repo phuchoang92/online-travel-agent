@@ -11,10 +11,13 @@ import AdminList from "./pages/admin/list/List";
 import Single from "./pages/admin/single/Single";
 import New from "./pages/admin/new/New";
 import { productInputs, userInputs } from "./formSource";
-import "./style/dark.scss";
+// import "./style/dark.scss";
 import { useContext } from "react";
+// import { DarkModeContext } from "./context/darkModeContext";
 
 function App() {
+  // const { darkMode } = useContext(DarkModeContext);
+
   return (
     <BrowserRouter>
       <Routes>

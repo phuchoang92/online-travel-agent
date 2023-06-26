@@ -17,8 +17,9 @@ import { useContext } from "react";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  
   return (
-    <div className="sidebar">
+    <div className="sidebarAdmin">
       <div className="top">
         <Link to="/admin/" style={{ textDecoration: "none" }}>
           <span className="logo">Admin</span>
