@@ -57,7 +57,7 @@ const Login = () => {
     }
 
     return (
-        <div className="container">
+        <div className="containerLogin" id="bodyLogin">
             {success ? (
                 <section className="section">
                     <h1>You are logged in!</h1>
@@ -71,8 +71,9 @@ const Login = () => {
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Sign In</h1>
                     <form onSubmit={handleSubmit} className="form">
-                        <label htmlFor="username">Username:</label>
+                        <label htmlFor="username" className="labelLogin">Username:</label>
                         <input
+                            className="inputLogin"
                             type="text"
                             id="username"
                             ref={userRef}
@@ -82,15 +83,16 @@ const Login = () => {
                             required
                         />
 
-                        <label htmlFor="password">Password:</label>
+                        <label htmlFor="password" className="labelLogin">Password:</label>
                         <input
+                            className="inputLogin"
                             type="password"
                             id="password"
                             onChange={(e) => setPwd(e.target.value)}
                             value={pwd}
                             required
                         />
-                        <button>Sign In</button>
+                        <button className="buttonLogin">Sign In</button>
                     </form>
                     <p>
                         Need an Account?<br />
