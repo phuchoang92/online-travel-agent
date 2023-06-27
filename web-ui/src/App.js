@@ -39,7 +39,7 @@ function App() {
             />
           </Route>
           <Route path="products">
-            <Route index element={<List />} />
+            <Route index element={<AdminList />} />
             <Route path=":productId" element={<Single />} />
             <Route
               path="new"
