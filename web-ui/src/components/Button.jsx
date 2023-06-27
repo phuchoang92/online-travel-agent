@@ -1,4 +1,3 @@
-import { IconType } from "react-icons";
 import "./button.css"
 
 const Button= ({

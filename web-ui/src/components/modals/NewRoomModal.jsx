@@ -1,16 +1,14 @@
 import Modal from "./Modal";
-import useRentModal from "../../hooks/useRentModal";
+import useRoomModal from "../../hooks/useRoomModal";
 import React , {useMemo, useState} from "react";
 import {useForm} from "react-hook-form";
-import {FieldValues} from "react-hook-form";
-import {SubmitHandler} from "react-hook-form";
 import { toast } from 'react-hot-toast';
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Counter from "../inputs/Counter";
 import CountrySelect from "../inputs/CountrySelect";
 import CategoryInput from '../inputs/CategoryInput';
-import {categories} from "../navbar/Categories";
+import {categories} from "../inputs/Categories";
 import axios from "axios";
 import "./modal.css"
 
@@ -23,8 +21,8 @@ const STEPS =  {
     PRICE : 5
 }
 
-const RentModal = (props) => {
-    const rentModal = useRentModal()
+const NewRoomModal = (props) => {
+    const rentModal = useRoomModal()
 
     const [isLoading, setIsLoading] = useState(false);
     const [step, setStep] = useState(STEPS.CATEGORY);
@@ -66,9 +64,6 @@ const RentModal = (props) => {
             shouldValidate: true
         })
     }
-    const Map = useMemo(() => {
-        return React.lazy(() => import('../Map'));
-    }, [location]);
 
     const onBack = () => {
         setStep((value) => value - 1);
@@ -78,7 +73,7 @@ const RentModal = (props) => {
         setStep((value) => value + 1);
     }
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const onSubmit = (data) => {
         if (step !== STEPS.PRICE) {
             return onNext();
         }
@@ -102,7 +97,6 @@ const RentModal = (props) => {
 
     function uploadPhoto(ev){
         const file = ev.target.files;
-
     }
 
     const actionLabel = useMemo(() => {
@@ -117,7 +111,6 @@ const RentModal = (props) => {
         if (step === STEPS.CATEGORY) {
             return undefined
         }
-
         return 'Back'
     }, [step]);
 
@@ -278,4 +271,4 @@ const RentModal = (props) => {
     );
 }
 
-export default RentModal;
+export default NewRoomModal;

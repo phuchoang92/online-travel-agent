@@ -1,8 +1,6 @@
 import {useForm} from "react-hook-form";
 import {toast} from "react-hot-toast";
 import axios from "axios";
-import {FieldValues} from "react-hook-form";
-import {SubmitHandler} from "react-hook-form";
 import {useCallback, useState} from "react";
 import Input from "../inputs/Input";
 import Button from "../Button";
@@ -11,6 +9,7 @@ import {FcGoogle} from "react-icons/fc";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import useRegisterModal from "../../hooks/useRegisterModal";
+import useLoginModal from "../../hooks/useLoginModal";
 
 const RegisterModal= () => {
     const registerModal = useRegisterModal();
@@ -31,7 +30,7 @@ const RegisterModal= () => {
         },
     });
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const onSubmit = (data) => {
         setIsLoading(true);
 
         axios.post('/api/register', data)
@@ -94,13 +93,11 @@ const RegisterModal= () => {
                 outline
                 label="Continue with Google"
                 icon={FcGoogle}
-                onClick={() => signIn('google')}
             />
             <Button
                 outline
                 label="Continue with Github"
                 icon={AiFillGithub}
-                onClick={() => signIn('github')}
             />
             <div
                 className="
