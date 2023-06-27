@@ -60,5 +60,9 @@
   "devDependencies": {
     "resolve-url-loader": "^5.0.0"
   },
-  "proxy":"https://localhost:44322/api/"
+  "devServer": {
+    "proxy": {
+      "/api": "https://localhost:44322"
+    }
+  }
 }

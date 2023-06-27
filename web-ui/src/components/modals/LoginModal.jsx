@@ -13,9 +13,12 @@ import Button from "../Button";
 import useLoginModal from "../../hooks/useLoginModal";
 import useRegisterModal from "../../hooks/useRegisterModal";
 import {AuthContext} from "../../context/AuthProvider";
-import {variables} from "../../Variables";
+import axios from "../../api/axios";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-hot-toast";
 
 const LoginModal = () => {
+    const navigate = useNavigate();
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
     const { loading, error, dispatch } = useContext(AuthContext);
@@ -29,57 +32,38 @@ const LoginModal = () => {
         },
     } = useForm({
         defaultValues: {
-            email: '',
+            username: '',
             password: ''
         },
     });
 
     const onSubmit = (data) => {
             setIsLoading(true);
-
             dispatch({ type: "LOGIN_START" });
 
             try {
                 console.log(data);
-                fetch(variables.API_URL + 'Login/Login', {
-                    method: 'POST',
-                    mode:"no-cors",
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Headers': 'Content-Type'
-                    },
-                    body: {
-                        "username": data.username,
-                        "password": data.password
-                    }
-                }).then(res => res.json())
-                    .then((result) => {
-                        console.log(result)
+                axios.post("Login/Login", data)
+                    .then(function (response) {
+                        setIsLoading(false);
+                        console.log(response);
+                        if (response.data.success === true){
+                            toast.success('Logged in');
+                            loginModal.onClose();
+                            dispatch({ type: "LOGIN_SUCCESS", payload: response.data.data.accessToken });
+                            navigate("/admin")
+                        }
+                        else {
+                            toast("Wrong username or password inputted")
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
                     });
             }catch (err) {
                 dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
             }
-
-            // signIn('credentials', {
-            //     ...data,
-            //     redirect: false,
-            // })
-            //     .then((callback) => {
-            //         setIsLoading(false);
-            //
-            //         if (callback?.ok) {
-            //             toast.success('Logged in');
-            //             router.refresh();
-            //             loginModal.onClose();
-            //         }
-            //
-            //         if (callback?.error) {
-            //             toast.error(callback.error);
-            //         }
-            //     });
-        }
+    }
 
     const onToggle = useCallback(() => {
         loginModal.onClose();
@@ -93,7 +77,7 @@ const LoginModal = () => {
                 subtitle="Login to your account!"
             />
             <Input
-                id="email"
+                id="username"
                 label="Email"
                 disabled={isLoading}
                 register={register}
