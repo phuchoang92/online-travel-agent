@@ -35,7 +35,6 @@ const Modal = ({
         if (disabled) {
             return;
         }
-
         onSubmit();
     }, [onSubmit, disabled]);
 

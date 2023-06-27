@@ -42,11 +42,9 @@ const LoginModal = () => {
             dispatch({ type: "LOGIN_START" });
 
             try {
-                console.log(data);
                 axios.post("Login/Login", data)
                     .then(function (response) {
                         setIsLoading(false);
-                        console.log(response);
                         if (response.data.success === true){
                             toast.success('Logged in');
                             loginModal.onClose();

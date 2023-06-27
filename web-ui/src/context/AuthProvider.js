@@ -1,8 +1,9 @@
 
-import { createContext, useEffect, useReducer } from "react";
+import {createContext, useEffect, useReducer, useState} from "react";
+import axios from "../api/axios";
 
 const INITIAL_STATE = {
-    user: JSON.parse(localStorage.getItem("user")) || null,
+    token: JSON.parse(localStorage.getItem("token")) || null,
     loading: false,
     error: null,
 };
@@ -13,25 +14,25 @@ const AuthReducer = (state, action) => {
     switch (action.type) {
         case "LOGIN_START":
             return {
-                user: null,
+                token: null,
                 loading: true,
                 error: null,
             };
         case "LOGIN_SUCCESS":
             return {
-                user: action.payload,
+                token: action.payload,
                 loading: false,
                 error: null,
             };
         case "LOGIN_FAILURE":
             return {
-                user: null,
+                token: null,
                 loading: false,
                 error: action.payload,
             };
         case "LOGOUT":
             return {
-                user: null,
+                token: null,
                 loading: false,
                 error: null,
             };
@@ -42,17 +43,30 @@ const AuthReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
+    const [user, setUser] = useState({})
 
     useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(state.user));
-    }, [state.user]);
+        localStorage.setItem("token", JSON.stringify(state.token));
+        if (state.token != null){
+            axios.post("Login/Auth", {
+                accessToken: state.token,
+                refreshToken: "",
+            })
+                .then(function (response){
+                    console.log(response)
+                }).catch(function (error) {
+                console.log(error);
+            })
+        }
+    }, [state.token]);
 
     return (
         <AuthContext.Provider
             value={{
-                user: state.user,
+                token: state.token,
                 loading: state.loading,
                 error: state.error,
+                user: user,
                 dispatch,
             }}
         >

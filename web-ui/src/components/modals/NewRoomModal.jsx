@@ -64,9 +64,6 @@ const NewRoomModal = (props) => {
             shouldValidate: true
         })
     }
-    const Map = useMemo(() => {
-        return React.lazy(() => import('../Map'));
-    }, [location]);
 
     const onBack = () => {
         setStep((value) => value - 1);
@@ -100,7 +97,6 @@ const NewRoomModal = (props) => {
 
     function uploadPhoto(ev){
         const file = ev.target.files;
-
     }
 
     const actionLabel = useMemo(() => {
@@ -115,7 +111,6 @@ const NewRoomModal = (props) => {
         if (step === STEPS.CATEGORY) {
             return undefined
         }
-
         return 'Back'
     }, [step]);
 

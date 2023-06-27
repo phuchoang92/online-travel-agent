@@ -1,6 +1,7 @@
 ﻿
 using Api.Database;
 using Api.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -33,7 +34,7 @@ namespace Api.Controllers
                 return Ok(new ApiResponse
                 {
                     Success = false,
-                    Message = "Validate username/password"
+                    Message = "Invalid username/password"
                 });
             }
 
@@ -43,6 +44,22 @@ namespace Api.Controllers
                 Message = "Authenticate success",
                 Data = GenerateToken(user)
             }) ;
+        }
+
+        [HttpPost("Auth")]
+        public IActionResult Auth(TokenModel token)
+        {
+            Guid id = (Guid)ValidateToken(token.AccessToken);
+            if (token == null)
+                return NotFound();
+            var user = _context.Users.SingleOrDefault(p => p.Id == id);
+
+            return Ok(new ApiResponse
+            {
+                Success = true,
+                Message = "Valid Token",
+                Data =  user,
+            });
         }
 
         private TokenModel GenerateToken(User user)
@@ -78,6 +95,38 @@ namespace Api.Controllers
                 AccessToken = acessToken,
                 RefreshToken = GenerateRefreshToken()
             };
+        }
+
+        private Guid? ValidateToken(string token)
+        {
+            if (token == null)
+                return null;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.SecretKey);
+            try
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedToken);
+
+                var jwtToken = (JwtSecurityToken)validatedToken;
+                var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "Id").Value);
+
+                // return user id from JWT token if validation successful
+                return userId;
+            }
+            catch
+            {
+                // return null if validation fails
+                return null;
+            }
         }
 
         private string GenerateRefreshToken()

@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "./navbar.css"
-import {useCallback, useContext} from "react";
+import {useCallback, useContext, useEffect} from "react";
 import {AuthContext} from "../../../context/AuthProvider";
 import useLoginModal from "../../../hooks/useLoginModal";
+import axios from "../../../api/axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
   const loginModal = useLoginModal();
 
   const handleRegisterClick = () => {
@@ -22,13 +23,14 @@ const Navbar = () => {
   };
 
   const adminRedirect = useCallback(() => {
-    if (user){
+    if (token){
+
       navigate("/admin");
     }
     else {
       loginModal.onOpen();
     }
-  },[user]);
+  },[token]);
 
   return (
     <div className="navbar">
