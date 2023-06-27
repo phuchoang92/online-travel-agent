@@ -1,4 +1,4 @@
-import "./list.css";
+import "./rent.css";
 import Navbar from "../navbar/Navbar";
 import Header from "../header/Header";
 import { useLocation } from "react-router-dom";
