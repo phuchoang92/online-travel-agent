@@ -88,7 +88,7 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
+    <div className="containerLogin" id="bodyLogin">
       {success ? (
         <section className="section">
           <h1>Success!</h1>
@@ -107,7 +107,7 @@ const Register = () => {
           </p>
           <h1>Register</h1>
           <form onSubmit={handleSubmit} className="form">
-            <label htmlFor="username">
+            <label htmlFor="username" className="labelLogin">
               Username:
               <FontAwesomeIcon
                 icon={faCheck}
@@ -119,6 +119,7 @@ const Register = () => {
               />
             </label>
             <input
+              className="inputLogin"
               type="text"
               id="username"
               ref={userRef}
@@ -145,7 +146,7 @@ const Register = () => {
               Letters, numbers, underscores, hyphens allowed.
             </p>
 
-            <label htmlFor="password">
+            <label htmlFor="password" className="labelLogin">
               Password:
               <FontAwesomeIcon
                 icon={faCheck}
@@ -157,6 +158,7 @@ const Register = () => {
               />
             </label>
             <input
+              className="inputLogin"
               type="password"
               id="password"
               onChange={(e) => setPwd(e.target.value)}
@@ -185,7 +187,7 @@ const Register = () => {
               <span aria-label="percent">%</span>
             </p>
 
-            <label htmlFor="confirm_pwd">
+            <label htmlFor="confirm_pwd" className="labelLogin">
               Confirm Password:
               <FontAwesomeIcon
                 icon={faCheck}
@@ -197,6 +199,7 @@ const Register = () => {
               />
             </label>
             <input
+              className="inputLogin"
               type="password"
               id="confirm_pwd"
               onChange={(e) => setMatchPwd(e.target.value)}
@@ -218,6 +221,7 @@ const Register = () => {
             </p>
 
             <button
+              className="buttonLogin"
               disabled={!validName || !validPwd || !validMatch ? true : false}
             >
               Sign Up
