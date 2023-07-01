@@ -53,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
                 refreshToken: "",
             })
                 .then(function (response){
-                    console.log(response)
+                    setUser(response.data.data)
                 }).catch(function (error) {
                 console.log(error);
             })

@@ -14,8 +14,8 @@ const Home = () => {
     <div>
         <LoginModal/>
         <RegisterModal/>
-        <Navbar />
-        <Header />
+        <Navbar/>
+        <Header/>
         <div className="homeContainer">
             <Featured />
             <h1 className="homeTitle">Browse by property type</h1>

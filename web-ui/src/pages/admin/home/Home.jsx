@@ -6,9 +6,11 @@ import Featured from "../../../components/adminPage/featured/Featured";
 import Chart from "../../../components/adminPage/chart/Chart";
 import Table from "../../../components/adminPage/table/Table";
 
+
 const AdminHome = () => {
   return (
     <div className="homeAdmin">
+      {/*<NewRoomModal/>*/}
       <Sidebar />
       <div className="homeAdmin__container">
         <Navbar />

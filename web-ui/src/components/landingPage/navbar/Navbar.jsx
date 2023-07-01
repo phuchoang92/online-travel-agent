@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "./navbar.css"
-import {useCallback, useContext, useEffect} from "react";
+import {useCallback, useContext} from "react";
 import {AuthContext} from "../../../context/AuthProvider";
 import useLoginModal from "../../../hooks/useLoginModal";
-import axios from "../../../api/axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { token } = useContext(AuthContext);
+  const {user} = useContext(AuthContext);
   const loginModal = useLoginModal();
 
   const handleRegisterClick = () => {
@@ -23,14 +23,18 @@ const Navbar = () => {
   };
 
   const adminRedirect = useCallback(() => {
-    if (token){
-
-      navigate("/admin");
+    if (user){
+      if (user.role === 1){
+        navigate("/");
+      }
+      else {
+        navigate("/admin");
+      }
     }
     else {
       loginModal.onOpen();
     }
-  },[token]);
+  },[user]);
 
   return (
     <div className="navbar">
