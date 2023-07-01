@@ -23,6 +23,7 @@ const Navbar = () => {
   };
 
   const adminRedirect = useCallback(() => {
+    console.log(user)
     if (user){
       if (user.role === 1){
         navigate("/");
@@ -34,7 +35,7 @@ const Navbar = () => {
     else {
       loginModal.onOpen();
     }
-  },[user]);
+  },[user, loginModal]);
 
   return (
     <div className="navbar">

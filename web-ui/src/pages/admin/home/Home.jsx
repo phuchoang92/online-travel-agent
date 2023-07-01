@@ -5,13 +5,15 @@ import Widget from "../../../components/adminPage/widget/Widget";
 import Featured from "../../../components/adminPage/featured/Featured";
 import Chart from "../../../components/adminPage/chart/Chart";
 import Table from "../../../components/adminPage/table/Table";
+import NewRoomModal from "../../../components/modals/NewRoomModal";
+import Modal from "../../../components/modals/Modal";
 
 
 const AdminHome = () => {
   return (
     <div className="homeAdmin">
-      {/*<NewRoomModal/>*/}
-      <Sidebar />
+
+      <Sidebar/>
       <div className="homeAdmin__container">
         <Navbar />
         <div className="widgets">
@@ -22,7 +24,7 @@ const AdminHome = () => {
         </div>
         <div className="charts">
           <Featured />
-          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+          <Chart title="Last 6 Months (Revenue)" aspect={2} />
         </div>
         <div className="listContainer">
           <div className="listTitle">Latest Transactions</div>

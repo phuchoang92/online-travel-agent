@@ -17,7 +17,7 @@ import { useContext } from "react";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
-  
+
   return (
     <div className="sidebarAdmin">
       <div className="top">
@@ -25,31 +25,31 @@ const Sidebar = () => {
           <span className="logo">Admin</span>
         </Link>
       </div>
-      <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
-          <p className="title">LISTS</p>
-          <Link to="/admin/users" style={{ textDecoration: "none" }}>
+
+          <Link to="/admin/bookings" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <span>Bookings</span>
             </li>
           </Link>
-          <Link to="/admin/products" style={{ textDecoration: "none" }}>
+          <Link to="/admin/hotels" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Hotels</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Room</span>
-          </li>
+          <Link to="/admin/rooms" style={{ textDecoration: "none" }}>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Room</span>
+            </li>
+          </Link>
           {/* <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
