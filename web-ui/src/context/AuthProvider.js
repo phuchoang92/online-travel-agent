@@ -43,7 +43,7 @@ const AuthReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState()
 
     useEffect(() => {
         localStorage.setItem("token", JSON.stringify(state.token));
@@ -53,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
                 refreshToken: "",
             })
                 .then(function (response){
-                    console.log(response)
+                    setUser(response.data.data)
                 }).catch(function (error) {
                 console.log(error);
             })

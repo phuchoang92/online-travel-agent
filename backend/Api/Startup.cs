@@ -103,6 +103,8 @@ namespace Api
 
             app.UseCors("CorPolicy");
 
+            app.UseStaticFiles();
+
             app.UseAuthentication();
 
             app.UseAuthorization();

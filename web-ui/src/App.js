@@ -6,7 +6,6 @@ import Register from "./components/landingPage/register/Register";
 import Login from "./components/landingPage/register/Login";
 
 import AdminHome from "./pages/admin/home/Home";
-import AdminLogin from "./pages/admin/login/Login";
 import AdminList from "./pages/admin/list/List";
 import Single from "./pages/admin/single/Single";
 import New from "./pages/admin/new/New";
@@ -29,21 +28,28 @@ function App() {
 
         <Route path="/admin/">
           <Route index element={<AdminHome />} />
-          <Route path="login" element={<AdminLogin />} />
-          <Route path="users">
+          <Route path="bookings">
             <Route index element={<AdminList />} />
-            <Route path=":userId" element={<Single />} />
+            <Route path=":bookingId" element={<Single />} />
             <Route
               path="new"
               element={<New inputs={userInputs} title="Add New User" />}
             />
           </Route>
-          <Route path="products">
+          <Route path="hotels">
             <Route index element={<AdminList />} />
             <Route path=":productId" element={<Single />} />
             <Route
               path="new"
               element={<New inputs={productInputs} title="Add New Product" />}
+            />
+          </Route>
+          <Route path="rooms">
+            <Route index element={<AdminList />} />
+            <Route path=":roomId" element={<Single />} />
+            <Route
+                path="new"
+                element={<New inputs={productInputs} title="Add New Product" />}
             />
           </Route>
         </Route>

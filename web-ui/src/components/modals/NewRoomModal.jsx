@@ -21,6 +21,18 @@ const STEPS =  {
     PRICE : 5
 }
 
+const defaultValues = {
+    category: '',
+    location: null,
+    guestCount: 1,
+    roomCount: 1,
+    bathroomCount: 1,
+    imageSrc: '',
+    price: 1,
+    title: '',
+    description: '',
+}
+
 const NewRoomModal = (props) => {
     const rentModal = useRoomModal()
 
@@ -37,20 +49,10 @@ const NewRoomModal = (props) => {
         },
         reset,
     } = useForm({
-        defaultValues: {
-            category: '',
-            location: null,
-            guestCount: 1,
-            roomCount: 1,
-            bathroomCount: 1,
-            imageSrc: '',
-            price: 1,
-            title: '',
-            description: '',
-        }
+        defaultValues
     });
 
-    const location = watch('location');
+    const location = watch("location");
     const category = watch('category');
     const guestCount = watch('guestCount');
     const roomCount = watch('roomCount');
@@ -201,7 +203,6 @@ const NewRoomModal = (props) => {
                     </label>
                 </div>
                 <div>
-
                 </div>
             </div>
         )

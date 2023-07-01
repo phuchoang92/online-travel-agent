@@ -2,14 +2,8 @@ import { useCallback } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import "./input.css"
 
-interface CounterProps {
-    title: string;
-    subtitle: string;
-    value: number;
-    onChange: (value: number) => void;
-}
 
-const Counter: React.FC<CounterProps> = ({
+const Counter = ({
      title,
      subtitle,
      value,

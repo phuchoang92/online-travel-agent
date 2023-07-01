@@ -2,20 +2,15 @@ import Select from 'react-select'
 import useCountries from "../../hooks/useCountries";
 import "./input.css"
 
-export type CountrySelectValue = {
-    flag: string;
-    label: string;
-    latlng: number[],
-    region: string;
-    value: string
+export const CountrySelectValue = {
+    flag: '',
+    label:'',
+    region: '',
+    value: ''
 }
 
-interface CountrySelectProps {
-    value?: CountrySelectValue;
-    onChange: (value: CountrySelectValue) => void;
-}
 
-const CountrySelect: React.FC<CountrySelectProps> = ({
+const CountrySelect = ({
      value,
      onChange
 }) => {
@@ -29,7 +24,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
                 options={getAll()}
                 value={value}
                 onChange={(value) => onChange(value)}
-                formatOptionLabel={(option: any) => (
+                formatOptionLabel={(option) => (
                     <div className="country-input">
                         <div>{option.flag}</div>
                         <div>

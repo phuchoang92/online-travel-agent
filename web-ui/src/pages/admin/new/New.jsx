@@ -3,12 +3,15 @@ import Sidebar from "../../../components/adminPage/sidebar/Sidebar";
 import Navbar from "../../../components/adminPage/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
+import NewRoomModal from "../../../components/modals/NewRoomModal";
+import Modal from "../../../components/modals/Modal";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
 
   return (
     <div className="new">
+      <Modal/>
       <Sidebar />
       <div className="newContainer">
         <Navbar />
