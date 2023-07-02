@@ -1,114 +1,147 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Modal} from 'react-native';
+import {
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Dimensions,
+  FlatList,
+} from 'react-native';
 
-const NightStayModal = ({isVisible, onClose, onNightStaySelect}) => {
+const NightStayModal = ({
+  isVisible,
+  onClose,
+  onNightStaySelect,
+  selectedDate,
+}) => {
   const [selectedNightStay, setSelectedNightStay] = useState(1);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
 
-  const handleNightStaySelect = nightStay => {
+  const handleNightStayPress = nightStay => {
     setSelectedNightStay(nightStay);
-    onNightStaySelect(nightStay);
-  };
-
-  const renderNightStayOptions = () => {
-    const options = [];
-    for (let i = 1; i <= 30; i++) {
-      options.push(
-        <TouchableOpacity
-          key={i}
-          style={[
-            styles.nightStayOption,
-            selectedNightStay === i && styles.selectedNightStayOption,
-          ]}
-          onPress={() => handleNightStaySelect(i)}>
-          <Text
-            style={[
-              styles.nightStayOptionText,
-              selectedNightStay === i && styles.selectedNightStayOptionText,
-            ]}>
-            {i} đêm
-          </Text>
-        </TouchableOpacity>,
-      );
+    if (selectedDate) {
+      const startDate = new Date(selectedDate);
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + nightStay);
+      setSelectedEndDate(endDate.toISOString().split('T')[0]);
+    } else {
+      setSelectedEndDate(null);
     }
-    return options;
   };
 
-  const calculateCheckOutDate = () => {
-    const checkInDate = new Date();
-    const checkOutDate = new Date(checkInDate);
-    checkOutDate.setDate(checkOutDate.getDate() + selectedNightStay);
-    const day = checkOutDate.getDate().toString().padStart(2, '0');
-    const month = (checkOutDate.getMonth() + 1).toString().padStart(2, '0');
-    const year = checkOutDate.getFullYear().toString().slice(-2);
-    return `${day}/${month}/${year}`;
+  const handleConfirmPress = () => {
+    onNightStaySelect(selectedNightStay);
+    onClose();
   };
+
+  const windowHeight = Dimensions.get('window').height;
+  const modalHeight = windowHeight * 0.5;
+
+  const nightStayOptions = [
+    {label: '1 đêm', value: '1 đêm'},
+    {label: '2 đêm', value: '2 đêm'},
+    {label: '3 đêm', value: '3 đêm'},
+    {label: '4 đêm', value: '4 đêm'},
+    {label: '5 đêm', value: '5 đêm'},
+    {label: '6 đêm', value: '6 đêm'},
+
+    // Thêm các lựa chọn khác tương tự ở đây
+  ];
+
+  const renderItem = ({item}) => (
+    <TouchableOpacity
+      style={[
+        styles.nightStayButton,
+        selectedNightStay === item.value && styles.selectedButton,
+      ]}
+      onPress={() => handleNightStayPress(item.value)}>
+      <Text style={styles.buttonText}>{item.label}</Text>
+    </TouchableOpacity>
+  );
 
   return (
-    <Modal visible={isVisible} animationType="slide" transparent={true}>
-      <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Chọn số đêm nghỉ</Text>
-          {renderNightStayOptions()}
-          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={styles.closeButtonText}>Đóng</Text>
-          </TouchableOpacity>
-          <Text style={styles.checkOutText}>
-            Thời gian trả phòng: {calculateCheckOutDate()}
-          </Text>
+    <Modal visible={isVisible} animationType="slide" transparent>
+      <View style={styles.overlay}>
+        <View style={[styles.modalContainer, {height: modalHeight}]}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Chọn số đêm nghỉ</Text>
+            <FlatList
+              data={nightStayOptions}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => index.toString()}
+              contentContainerStyle={styles.buttonContainer}
+            />
+            {selectedEndDate && (
+              <Text style={styles.endDateText}>
+                Ngày kết thúc: {selectedEndDate}
+              </Text>
+            )}
+            <TouchableOpacity
+              style={styles.confirmButton}
+              onPress={handleConfirmPress}>
+              <Text style={styles.buttonText}>Xác nhận</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </Modal>
   );
 };
 
-export default NightStayModal;
-
 const styles = StyleSheet.create({
-  modalContainer: {
+  overlay: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-end',
+  },
+  modalContainer: {
+    backgroundColor: '#FFF',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingHorizontal: 16,
   },
   modalContent: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
-    width: 300,
+    paddingTop: 20,
+    paddingBottom: 30,
   },
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 20,
+    textAlign: 'center',
   },
-  nightStayOption: {
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  selectedNightStayOption: {
-    backgroundColor: '#eee',
-  },
-  nightStayOptionText: {
-    fontSize: 16,
-  },
-  selectedNightStayOptionText: {
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    marginTop: 20,
-    backgroundColor: '#0099FF',
-    paddingVertical: 10,
-    borderRadius: 5,
+  buttonContainer: {
     alignItems: 'center',
   },
-  closeButtonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'white',
+  nightStayButton: {
+    padding: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginVertical: 5,
+    width: '50%',
   },
-  checkOutText: {
-    marginTop: 10,
+  selectedButton: {
+    backgroundColor: '#0099FF',
+    borderColor: '#0099FF',
+  },
+  buttonText: {
     fontSize: 16,
+    textAlign: 'center',
+    color: 'black',
+  },
+  endDateText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  confirmButton: {
+    backgroundColor: '#0099FF',
+    borderRadius: 5,
+    paddingVertical: 10,
+    marginTop: 20,
   },
 });
+
+export default NightStayModal;

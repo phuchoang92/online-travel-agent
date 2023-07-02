@@ -3,7 +3,16 @@ import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import SearchModal from './SearchModal';
 import DatePickerModal from './DatePickerModal';
-const CustomSort = ({placeholder, style}) => {
+import NightStayModal from './NightStayModal';
+import {format, addDays} from 'date-fns';
+import RoomSelectionModal from './RoomSelectionModal';
+import PriceSelectionModal from './PriceSelectionModal';
+
+const CustomSort = ({placeholder, style, navigation}) => {
+  // const handleBooking = () => {
+  //   navigation.navigate('HotelList');
+  // };
+
   const [text, setText] = useState('');
   const handleTextChange = newText => {
     setText(newText);
@@ -30,19 +39,68 @@ const CustomSort = ({placeholder, style}) => {
   const hideDatePickerModal = () => {
     setIsDatePickerVisible(false);
   };
-  // const formatDate = date => {
-  //   const day = date.getDate().toString().padStart(2, '0');
-  //   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  //   const year = date.getFullYear().toString().slice(-2);
 
-  //   return `${day}/${month}/${year}`;
-  // };
-
-  const [selectedDate, setSelectedDate] = useState(null); // Thêm state selectedDate và khởi tạo ban đầu là null
+  const [selectedDate, setSelectedDate] = useState(null);
   const handleDateSelect = date => {
     setSelectedDate(date);
-    setIsModalVisible(false);
+    setIsDatePickerVisible(false);
+
+    if (selectedNight) {
+      const endDate = addDays(date, selectedNight);
+      setSelectedEndDate(format(endDate, 'YY/MM/DD'));
+    }
   };
+
+  const [isNightStayModalVisible, setIsNightStayModalVisible] = useState(false);
+  const showNightStayModal = () => {
+    setIsNightStayModalVisible(true);
+  };
+  const hideNightStayModal = () => {
+    setIsNightStayModalVisible(false);
+  };
+  const handleNightStayPress = nightStay => {
+    setSelectedNightStay(nightStay);
+    setIsNightStayModalVisible(false);
+
+    if (selectedDate) {
+      const endDate = addDays(new Date(selectedDate), nightStay);
+      setSelectedEndDate(format(endDate, 'YY/MM/DD'));
+    }
+  };
+  const [selectedNight, setSelectedNightStay] = useState(null);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
+
+  const [isRoomSelectionModalVisible, setIsRoomSelectionModalVisible] =
+    useState(false);
+  const showRoomSelectionModal = () => {
+    setIsRoomSelectionModalVisible(true);
+  };
+  const hideRoomSelectionModal = () => {
+    setIsRoomSelectionModalVisible(false);
+  };
+  const [selectedRooms, setSelectedRooms] = useState(0);
+  const [selectedAdults, setSelectedAdults] = useState(0);
+  const handleRoomSelection = (selectedRooms, selectedAdults) => {
+    setSelectedRooms(selectedRooms);
+    setSelectedAdults(selectedAdults);
+  };
+  const [isPriceSelectionModalVisible, setIsPriceSelectionModalVisible] =
+    useState(false);
+  const showPriceSelectionModal = () => {
+    setIsPriceSelectionModalVisible(true);
+  };
+  const [selectedFilter, setSelectedFilter] = useState('');
+  const handleFilterSelection = (minPrice, maxPrice, star, paymentMethod) => {
+    setSelectedMinPrice(minPrice);
+    setSelectedMaxPrice(maxPrice);
+    setSelectedStar(star);
+    setSelectedPaymentMethod(paymentMethod);
+  };
+
+  const [selectedMinPrice, setSelectedMinPrice] = useState(null);
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
+  const [selectedStar, setSelectedStar] = useState(null);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
 
   return (
     <View
@@ -114,32 +172,34 @@ const CustomSort = ({placeholder, style}) => {
           </View>
           <View>
             <View style={styles.container3}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={showNightStayModal}>
                 <Image
                   source={require('../assets/icons/icon_night.png')}
-                  style={styles.iconCalendear}
+                  style={styles.iconNight}
                 />
               </TouchableOpacity>
               <Text style={styles.text}>Số đêm nghỉ</Text>
             </View>
             <View style={styles.nightRelax}>
-              <Text style={styles.dayText}>aa</Text>
+              <Text style={styles.dayText}>
+                {selectedNight ? selectedNight : 'Số đêm'}
+              </Text>
             </View>
           </View>
-        </View>
-        <View
-          style={{flexDirection: 'row', alignItems: 'center', marginLeft: 30}}>
-          <Text>Ngay tra phong: </Text>
-          <Text>aaa</Text>
+          {isNightStayModalVisible && (
+            <NightStayModal
+              isVisible={isNightStayModalVisible}
+              onClose={hideNightStayModal}
+              onNightStaySelect={handleNightStayPress}
+            />
+          )}
         </View>
       </View>
       <View style={styles.roomNumberView}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <TouchableOpacity style={{height: 30, width: 30}}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableOpacity
+            style={{height: 30, width: 30}}
+            onPress={showRoomSelectionModal}>
             <Image
               source={require('../assets/icons/icon_room_booking.png')}
               style={styles.iconRoomBooking}
@@ -148,27 +208,53 @@ const CustomSort = ({placeholder, style}) => {
           <Text style={styles.text}>Số người và số khách</Text>
         </View>
         <View style={styles.roomBooking}>
-          <Text style={styles.dayText}>aa</Text>
+          <Text
+            style={
+              styles.dayText
+            }>{`${selectedRooms} phòng, ${selectedAdults} người lớn`}</Text>
         </View>
       </View>
+
+      {isRoomSelectionModalVisible && (
+        <RoomSelectionModal
+          isVisible={isRoomSelectionModalVisible}
+          onClose={hideRoomSelectionModal}
+          onRoomSelection={handleRoomSelection}
+        />
+      )}
       <View style={styles.sortTypeView}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <TouchableOpacity>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableOpacity onPress={showPriceSelectionModal}>
             <Image
               source={require('../assets/icons/icon_sort.png')}
-              style={styles.iconCalendear}
+              style={styles.iconSort}
             />
           </TouchableOpacity>
+
           <Text style={styles.text}>Bộ lọc</Text>
         </View>
         <View style={styles.bookingDay}>
-          <Text style={styles.sortText}>Chọn bộ lọc</Text>
+          <Text style={styles.dayText}>
+            {selectedMinPrice && selectedMaxPrice
+              ? `${selectedMinPrice} VND - ${selectedMaxPrice} VND`
+              : 'Min giá - Max giá'}
+          </Text>
+          {selectedStar && (
+            <Text style={styles.dayText}>, {selectedStar} Sao</Text>
+          )}
+          {selectedPaymentMethod && (
+            <Text style={styles.dayText}>, {selectedPaymentMethod}</Text>
+          )}
         </View>
       </View>
+
+      {isPriceSelectionModalVisible && (
+        <PriceSelectionModal
+          isVisible={isPriceSelectionModalVisible}
+          onClose={() => setIsPriceSelectionModalVisible(false)}
+          onConfirm={handleFilterSelection}
+        />
+      )}
       <View style={{alignItems: 'center'}}>
         <TouchableOpacity
           style={{
@@ -178,7 +264,8 @@ const CustomSort = ({placeholder, style}) => {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 10,
-          }}>
+          }}
+          onPress={() => navigation.navigate('HotelList')}>
           <Text style={styles.findText}>Tim kiem</Text>
         </TouchableOpacity>
       </View>
@@ -216,6 +303,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   iconCalendear: {
+    height: 30,
+    width: 30,
+    tintColor: 'grey',
+  },
+  iconNight: {
     height: 30,
     width: 30,
     tintColor: 'grey',
@@ -285,14 +377,17 @@ const styles = StyleSheet.create({
     height: 60,
     margin: 5,
   },
+  iconSort: {
+    height: 30,
+    width: 30,
+    tintColor: 'grey',
+  },
   sortText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    color: 'grey',
+    marginLeft: 30,
   },
   findText: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 18,
     color: 'white',
   },
 });

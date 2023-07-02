@@ -1,19 +1,10 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Modal,
-  TouchableOpacity,
-  FlatList,
-  Dimensions,
-} from 'react-native';
+import {View, Text, Modal, TouchableOpacity} from 'react-native';
 import {Calendar} from 'react-native-calendars';
 
 const DatePickerModal = ({isVisible, onClose, onDateSelect}) => {
   const [selectedDate, setSelectedDate] = useState(null);
-
-  const windowHeight = Dimensions.get('window').height;
-  const modalHeight = windowHeight * 0.5;
+  const currentDate = new Date().toISOString().split('T')[0];
 
   const handleModalClose = () => {
     setSelectedDate(null);
@@ -23,13 +14,19 @@ const DatePickerModal = ({isVisible, onClose, onDateSelect}) => {
   const handleDateSelect = date => {
     setSelectedDate(date.dateString);
     onDateSelect(date.dateString);
-    onClose();
+  };
+
+  const handleConfirmPress = () => {
+    if (selectedDate) {
+      onDateSelect(selectedDate);
+      onClose();
+    }
   };
 
   return (
     <Modal visible={isVisible} transparent animationType="slide">
       <View style={styles.overlay}>
-        <View style={[styles.modalContainer, {height: modalHeight}]}>
+        <View style={styles.modalContainer}>
           <View style={styles.headerContainer}>
             <Text style={styles.titleText}>Chọn ngày</Text>
             <TouchableOpacity
@@ -46,7 +43,13 @@ const DatePickerModal = ({isVisible, onClose, onDateSelect}) => {
                 selectedColor: 'blue',
               },
             }}
+            minDate={currentDate}
           />
+          <TouchableOpacity
+            style={styles.confirmButton}
+            onPress={handleConfirmPress}>
+            <Text style={styles.confirmButtonText}>Xác nhận</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>
@@ -82,6 +85,17 @@ const styles = {
   closeButtonText: {
     color: 'blue',
     fontSize: 16,
+  },
+  confirmButton: {
+    backgroundColor: 'blue',
+    borderRadius: 5,
+    paddingVertical: 10,
+    marginTop: 10,
+  },
+  confirmButtonText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
   },
 };
 
