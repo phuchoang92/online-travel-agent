@@ -1,20 +1,31 @@
+import React from 'react';
 import {
   StyleSheet,
   Text,
-  SafeAreaView,
+  ScrollView,
   View,
   Image,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
-import React from 'react';
 import CustomTextInput from '../../../components/CustomTextInput';
 import CustomSort from '../../../components/CustomSort';
-const Home = () => {
+import TravelDiscounts from '../../../components/TravelDiscounts';
+import FamousPlaces from '../../../components/FamousPlaces';
+
+const Home = ({navigation}) => {
+  const scrollToBottom = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({animated: true});
+    }
+  };
+  const scrollViewRef = React.useRef(null);
+
   return (
     <SafeAreaView>
-      <View style={styles.container}>
+      <View style={styles.header}>
         <CustomTextInput
-          placeholder={'Search hotel,place,...'}
+          placeholder={'Search hotel, place, ...'}
           imageSource={require('../../../assets/icons/icon_search.png')}
           style={styles.textInputView}
         />
@@ -31,17 +42,40 @@ const Home = () => {
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.filterView}>
-        <CustomSort placeholder={'Nhap diem den, khach san,..'} />
-      </View>
+      <ScrollView
+        ref={scrollViewRef}
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps="handled"
+        automaticallyAdjustContentInsets={false}
+        onContentSizeChange={scrollToBottom}
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.filterView}>
+          <CustomSort
+            placeholder={'Nhap diem den, khach san, ...'}
+            navigation={navigation}
+          />
+        </View>
+        <View style={styles.content}>
+          <View style={styles.travelDiscountsView}>
+            <Text style={styles.discountText}>Ưu đãi</Text>
+            <TravelDiscounts />
+          </View>
+          <View style={styles.famousPlacesView}>
+            <Text style={styles.famousPlacesText}>Địa điểm nổi tiếng</Text>
+            <FamousPlaces />
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default Home;
-
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
+    backgroundColor: '#FFF',
+  },
+  header: {
     backgroundColor: '#0099FF',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -63,4 +97,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
+  content: {
+    paddingHorizontal: 20,
+  },
+  travelDiscountsView: {
+    marginTop: 20,
+  },
+  discountText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  famousPlacesView: {
+    marginTop: 20,
+  },
+  famousPlacesText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
 });
+
+export default Home;

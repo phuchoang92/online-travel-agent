@@ -17,6 +17,8 @@ import Saved from '../screens/Main/Saved/Saved';
 import UserInfo from '../screens/Main/UserInfo/UserInfo';
 import EnterPhone from '../screens/ForgotPassword/EnterPhone';
 import VerifyCode from '../screens/ForgotPassword/VerifyCode';
+import HotelList from '../screens/HotelList/HotelList';
+import DetailHotel from '../screens/DetailHotel/DetailHotel';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -130,6 +132,8 @@ function Navigation() {
       <Stack.Screen name="Home" component={HomeTabNavigator} />
       <Stack.Screen name="EnterPhone" component={EnterPhone} />
       <Stack.Screen name="VerifyCode" component={VerifyCode} />
+      <Stack.Screen name="HotelList" component={HotelList} />
+      <Stack.Screen name="DetailHotel" component={DetailHotel} />
     </Stack.Navigator>
   );
 }

@@ -1,14 +1,19 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import ExplorePlaces from '../../../components/ExplorePlaces';
 
 const Explore = () => {
   return (
-    <View>
-      <Text>Explore</Text>
+    <View style={styles.container}>
+      <ExplorePlaces />
     </View>
   );
 };
 
-export default Explore;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
-const styles = StyleSheet.create({});
+export default Explore;
