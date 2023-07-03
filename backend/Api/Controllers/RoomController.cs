@@ -2,8 +2,11 @@
 using Api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,9 +17,11 @@ namespace Api.Controllers
     public class RoomController : ControllerBase
     {
         private readonly IRoomRepository _roomRep;
-        public RoomController(IRoomRepository roomRepository)
+        private readonly AppSettings _appSettings;
+        public RoomController(IRoomRepository roomRepository, IOptionsMonitor<AppSettings> optionsMonitor)
         {
             _roomRep = roomRepository;
+            _appSettings = optionsMonitor.CurrentValue;
         }
 
         [HttpGet]
@@ -96,16 +101,40 @@ namespace Api.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult Add(RoomVM room)
+        [HttpPost , DisableRequestSizeLimit]
+
+        public Task<IActionResult> AddAsync()
         {
+
             try
             {
-                return Ok(_roomRep.Add(room));
+                var data = Request.Form.Files[0];
+                //foreach (var file in data)
+                //{
+
+                //}
+                RoomVM roomInfo = new RoomVM();
+                _roomRep.Add(roomInfo);
+
+                //foreach (var item in roomInfo.roomPictures)
+                //{
+                //    if (item.FileName == null || item.FileName.Length == 0)
+                //    {
+                //        return Content("File not selected");
+                //    }
+                //    var path = Path.Combine(_appSettings.WebRootPath, "Images/", item.FileName);
+
+                //    using (FileStream stream = new FileStream(path, FileMode.Create))
+                //    {
+                //        await item.CopyToAsync(stream);
+                //        stream.Close();
+                //    }
+                //}
+                return Task.FromResult<IActionResult>(Ok());
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return Task.FromResult<IActionResult>(StatusCode(StatusCodes.Status500InternalServerError));
             }
         }
     }

@@ -69,6 +69,16 @@ namespace Api
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+            services.AddCors(
+                policy => policy.AddPolicy("CorPolicy", builder => {
+                    builder
+                    .WithOrigins("http://localhost:3000/")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+                })
+            );
             
 
             services.AddSwaggerGen(c =>
@@ -85,11 +95,16 @@ namespace Api
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1"));
+               
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorPolicy");
+
+            app.UseStaticFiles();
 
             app.UseAuthentication();
 

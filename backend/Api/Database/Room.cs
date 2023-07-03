@@ -18,7 +18,6 @@ namespace Api.Database
         [Required]
         public byte Status { get; set; }
         public byte Style { get; set; }
-        public string LinkImg { get; set; }
         public string Description { get; set; }
         public Guid HotelID { get; set; }
         public Hotel Hotels { get; set; }
