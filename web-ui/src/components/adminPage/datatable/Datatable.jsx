@@ -2,14 +2,11 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
-import {useCallback, useState} from "react";
-import useRoomModal from "../../../hooks/useRoomModal";
-import useLoginModal from "../../../hooks/useLoginModal";
+import { useState} from "react";
+
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
-  const roomModal = useRoomModal();
-  const loginModal = useLoginModal();
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -23,7 +20,7 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to="/admin/rooms/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -38,20 +35,14 @@ const Datatable = () => {
     },
   ];
 
-    const roomChange = ()=> {
-        roomModal.onOpen();
-    };
 
   return (
     <div className="datatable">
       <div className="datatableTitle">
           Add New User
-          <button className="newButton" onClick={roomChange}>
-              Add New
-          </button>
-        {/*<Link to="/users/new" className="link">*/}
-        {/*  Add New*/}
-        {/*</Link>*/}
+        <Link to="/admin/rooms/new" className="link">
+          Add New
+        </Link>
       </div>
       <DataGrid
         className="datagrid"

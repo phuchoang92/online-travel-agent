@@ -33,7 +33,7 @@ function App() {
             <Route path=":bookingId" element={<Single />} />
             <Route
               path="new"
-              element={<New inputs={userInputs} title="Add New User" />}
+              element={<New inputs={userInputs} title="Add New Booking" />}
             />
           </Route>
           <Route path="hotels">
@@ -41,7 +41,7 @@ function App() {
             <Route path=":productId" element={<Single />} />
             <Route
               path="new"
-              element={<New inputs={productInputs} title="Add New Product" />}
+              element={<New inputs={productInputs} title="Add" />}
             />
           </Route>
           <Route path="rooms">
@@ -49,7 +49,7 @@ function App() {
             <Route path=":roomId" element={<Single />} />
             <Route
                 path="new"
-                element={<New inputs={productInputs} title="Add New Product" />}
+                element={<New inputs={productInputs} title="Provide the information about your room" />}
             />
           </Route>
         </Route>
