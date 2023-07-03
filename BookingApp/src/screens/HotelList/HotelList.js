@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -9,14 +9,25 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import hotels from './mockData';
+import axios from 'axios';
 
-const HotelList = ({navigation}) => {
+const HotelList = ({ navigation,
+
+}) => {
+
+  // useEffect(  () => {
+  //   axios.get('https://ded5-2a09-bac5-d45c-e6-00-17-303.ngrok-free.app/api/Room')
+  //     .then(function (response) {
+  //       console.log(response.data)
+  //     });
+  // },[])
+
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         style={styles.hotelItem}
         onPress={() => navigation.navigate('DetailHotel', {hotel: item})}>
-        <Image source={item.image} style={styles.hotelImage} />
+        <Image source={require('../../assets/images/hotel1.png')} style={styles.hotelImage} />
         <View style={styles.hotelInfo}>
           <Text style={styles.hotelName}>{item.name}</Text>
           <Text style={styles.hotelRating}>Rating: {item.rating}/10</Text>
@@ -28,7 +39,7 @@ const HotelList = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={[styles.header, {backgroundColor: '#0099FF'}]}>
+      <View style={[styles.header, {backgroundColor: '#003580'}]}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image
             source={require('../../assets/icons/icon_back.png')}

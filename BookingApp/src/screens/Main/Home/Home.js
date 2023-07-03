@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   header: {
-    backgroundColor: '#0099FF',
+    backgroundColor: '#003580',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

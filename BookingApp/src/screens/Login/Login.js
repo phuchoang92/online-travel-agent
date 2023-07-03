@@ -6,12 +6,19 @@ import {
   View,
   Image,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from "react";
 import {useNavigation} from '@react-navigation/native';
 import CustomTextInput from '../../components/CustomTextInput';
 
 const Login = () => {
   const navigation = useNavigation();
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleLogin = () => {
+    navigation.navigate('Home')
+  }
+
   return (
     <SafeAreaView>
       <View style={styles.headerTextView}>
@@ -37,7 +44,7 @@ const Login = () => {
       <View style={styles.login}>
         <View>
           <Text style={styles.loginText}>Email adress</Text>
-          <CustomTextInput style={styles.textInput} placeholder="Email" />
+          <CustomTextInput style={styles.textInput} placeholder="Email" text={username} setText={setUsername}/>
         </View>
         <View>
           <Text style={styles.loginText}>Password</Text>
@@ -45,6 +52,7 @@ const Login = () => {
             style={styles.textInput}
             placeholder="********"
             secure={true}
+            text={password} setText={setPassword}
           />
         </View>
         <View style={styles.forgotPassView}>
@@ -58,7 +66,7 @@ const Login = () => {
         <View>
           <TouchableOpacity
             style={styles.buttonSignIn}
-            onPress={() => navigation.navigate('Home')}>
+            onPress={() => handleLogin()}>
             <Text style={styles.textButton}>SIGN IN</Text>
           </TouchableOpacity>
         </View>
@@ -97,6 +105,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   headerText: {
+    textAlign: 'center',
     fontSize: 35,
     fontWeight: 'bold',
   },

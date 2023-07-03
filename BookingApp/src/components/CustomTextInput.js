@@ -13,8 +13,9 @@ const CustomTextInput = ({
   secure,
   keyboardType,
   imageSource,
+  text,
+  setText
 }) => {
-  const [text, setText] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleSecureEntry = () => {

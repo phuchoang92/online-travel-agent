@@ -18,6 +18,23 @@ const CustomSort = ({placeholder, style, navigation}) => {
     setText(newText);
   };
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isNightStayModalVisible, setIsNightStayModalVisible] = useState(false);
+  const [selectedNight, setSelectedNightStay] = useState(null);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [isRoomSelectionModalVisible, setIsRoomSelectionModalVisible] =
+    useState(false);
+  const [selectedRooms, setSelectedRooms] = useState(0);
+  const [selectedAdults, setSelectedAdults] = useState(0);
+  const [selectedMinPrice, setSelectedMinPrice] = useState(null);
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
+  const [selectedStar, setSelectedStar] = useState(null);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState('');
+  const [isPriceSelectionModalVisible, setIsPriceSelectionModalVisible] =
+    useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -26,12 +43,12 @@ const CustomSort = ({placeholder, style, navigation}) => {
   const hideModal = () => {
     setIsModalVisible(false);
   };
-  const [selectedLocation, setSelectedLocation] = useState('');
+
   const handleLocationSelect = location => {
     setSelectedLocation(location);
     setIsModalVisible(false);
   };
-  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+
   const showDatePickerModal = () => {
     setIsDatePickerVisible(true);
   };
@@ -40,7 +57,6 @@ const CustomSort = ({placeholder, style, navigation}) => {
     setIsDatePickerVisible(false);
   };
 
-  const [selectedDate, setSelectedDate] = useState(null);
   const handleDateSelect = date => {
     setSelectedDate(date);
     setIsDatePickerVisible(false);
@@ -51,13 +67,14 @@ const CustomSort = ({placeholder, style, navigation}) => {
     }
   };
 
-  const [isNightStayModalVisible, setIsNightStayModalVisible] = useState(false);
   const showNightStayModal = () => {
     setIsNightStayModalVisible(true);
   };
+
   const hideNightStayModal = () => {
     setIsNightStayModalVisible(false);
   };
+
   const handleNightStayPress = nightStay => {
     setSelectedNightStay(nightStay);
     setIsNightStayModalVisible(false);
@@ -67,29 +84,23 @@ const CustomSort = ({placeholder, style, navigation}) => {
       setSelectedEndDate(format(endDate, 'YY/MM/DD'));
     }
   };
-  const [selectedNight, setSelectedNightStay] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
 
-  const [isRoomSelectionModalVisible, setIsRoomSelectionModalVisible] =
-    useState(false);
   const showRoomSelectionModal = () => {
     setIsRoomSelectionModalVisible(true);
   };
   const hideRoomSelectionModal = () => {
     setIsRoomSelectionModalVisible(false);
   };
-  const [selectedRooms, setSelectedRooms] = useState(0);
-  const [selectedAdults, setSelectedAdults] = useState(0);
+
   const handleRoomSelection = (selectedRooms, selectedAdults) => {
     setSelectedRooms(selectedRooms);
     setSelectedAdults(selectedAdults);
   };
-  const [isPriceSelectionModalVisible, setIsPriceSelectionModalVisible] =
-    useState(false);
+
   const showPriceSelectionModal = () => {
     setIsPriceSelectionModalVisible(true);
   };
-  const [selectedFilter, setSelectedFilter] = useState('');
+
   const handleFilterSelection = (minPrice, maxPrice, star, paymentMethod) => {
     setSelectedMinPrice(minPrice);
     setSelectedMaxPrice(maxPrice);
@@ -97,18 +108,12 @@ const CustomSort = ({placeholder, style, navigation}) => {
     setSelectedPaymentMethod(paymentMethod);
   };
 
-  const [selectedMinPrice, setSelectedMinPrice] = useState(null);
-  const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
-  const [selectedStar, setSelectedStar] = useState(null);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
-
   return (
     <View
       style={{
         backgroundColor: 'white',
         padding: 10,
-        borderRadius: 15,
-        width: 400,
+        width: 400
       }}>
       <View style={styles.placeView}>
         <View>
@@ -231,7 +236,7 @@ const CustomSort = ({placeholder, style, navigation}) => {
             />
           </TouchableOpacity>
 
-          <Text style={styles.text}>Bộ lọc</Text>
+          <Text style={styles.text}>Filter</Text>
         </View>
         <View style={styles.bookingDay}>
           <Text style={styles.dayText}>
@@ -258,15 +263,17 @@ const CustomSort = ({placeholder, style, navigation}) => {
       <View style={{alignItems: 'center'}}>
         <TouchableOpacity
           style={{
-            backgroundColor: '#0099FF',
+            backgroundColor: '#003580',
             height: 40,
             width: 250,
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 10,
           }}
-          onPress={() => navigation.navigate('HotelList')}>
-          <Text style={styles.findText}>Tim kiem</Text>
+          onPress={() => navigation.navigate('HotelList', {
+
+          })}>
+          <Text style={styles.findText}>Search</Text>
         </TouchableOpacity>
       </View>
     </View>
