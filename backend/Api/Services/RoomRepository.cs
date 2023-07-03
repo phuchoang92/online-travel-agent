@@ -28,6 +28,7 @@ namespace Api.Services
                 Style = room.Style,
                 LinkImg = room.LinkImg,
                 Description = room.Description,
+                HotelID = room.HotelID,
                 
             };
 
@@ -42,7 +43,9 @@ namespace Api.Services
                 Status = _room.Status,
                 Style = _room.Style,
                 LinkImg = _room.LinkImg,
-                Description = _room.Description
+                Description = _room.Description,
+                HotelID= room.HotelID,
+                
             };
         }
 
@@ -67,7 +70,9 @@ namespace Api.Services
                 Status = r.Status,
                 Style = r.Style,
                 LinkImg = r.LinkImg,
-                Description = r.Description
+                Description = r.Description,
+                HotelID = r.HotelID,
+                
                 
         });
 
@@ -140,7 +145,8 @@ namespace Api.Services
                     Status = room.Status,
                     Style = room.Style,
                     LinkImg = room.LinkImg,
-                    Description = room.Description
+                    Description = room.Description,
+                    HotelID = room.HotelID,
                 };
             }
 
@@ -155,6 +161,7 @@ namespace Api.Services
             _room.Price = room.Price;
             _room.LinkImg = room.LinkImg;
             _room.Description = room.Description;
+            _room.HotelID = room.HotelID;
             _context.SaveChanges();
         }
     }

@@ -15,13 +15,25 @@ namespace Api.Database
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Infras> Infrases { get; set; }
         public DbSet<Room_Infras> Room_Infrases { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Hotel>(e =>
+            {
+                e.ToTable("Hotel");
+                e.HasKey(h => h.HotelID);
+            });
+
             modelBuilder.Entity<Room>(e => {
                 e.ToTable("Room");
                 e.HasKey(r => r.RoomID);
+                e.HasOne(e => e.Hotels)
+                .WithMany(e => e.Rooms)
+                .HasForeignKey(e => e.HotelID)
+                .HasConstraintName("FK_Hotel_Room");
             });
 
             modelBuilder.Entity<UserDetail>(e => {

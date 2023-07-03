@@ -20,6 +20,9 @@ namespace Api.Database
         public byte Style { get; set; }
         public string LinkImg { get; set; }
         public string Description { get; set; }
+        public Guid HotelID { get; set; }
+        public Hotel Hotels { get; set; }
+
         public ICollection<BookingDetail> BookingDetails { get; set; }
         public ICollection<Room_Infras> Room_Infras { get; set; }
 

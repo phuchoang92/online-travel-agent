@@ -48,6 +48,7 @@ namespace Api
             services.AddScoped<IUserDetailRepository, UserDetailRepository>();
             services.AddScoped<IInfrasRepository, InfrasRepository>();
             services.AddScoped<IRoom_InfrasRepository, Room_InfrasRepository>();
+            services.AddScoped<IHotelRepository, HotelRepository>();
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
