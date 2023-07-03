@@ -7,6 +7,7 @@ import Login from "./components/landingPage/register/Login";
 
 import AdminHome from "./pages/admin/home/Home";
 import AdminList from "./pages/admin/list/List";
+import HotelList from "./pages/admin/list/HotelList";
 import Single from "./pages/admin/single/Single";
 import New from "./pages/admin/new/New";
 import { productInputs, userInputs } from "./formSource";
@@ -37,7 +38,7 @@ function App() {
             />
           </Route>
           <Route path="hotels">
-            <Route index element={<AdminList />} />
+            <Route index element={<HotelList />} />
             <Route path=":productId" element={<Single />} />
             <Route
               path="new"
@@ -48,8 +49,13 @@ function App() {
             <Route index element={<AdminList />} />
             <Route path=":roomId" element={<Single />} />
             <Route
-                path="new"
-                element={<New inputs={productInputs} title="Provide the information about your room" />}
+              path="new"
+              element={
+                <New
+                  inputs={productInputs}
+                  title="Provide the information about your room"
+                />
+              }
             />
           </Route>
         </Route>
