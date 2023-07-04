@@ -46,8 +46,8 @@ export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState()
 
     useEffect(() => {
-        localStorage.setItem("token", JSON.stringify(state.token));
         if (state.token != null){
+            localStorage.setItem("token", JSON.stringify(state.token));
             axios.post("Login/Auth", {
                 accessToken: state.token,
                 refreshToken: "",

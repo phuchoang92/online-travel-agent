@@ -40,7 +40,6 @@ const LoginModal = () => {
     const onSubmit = (data) => {
             setIsLoading(true);
             dispatch({ type: "LOGIN_START" });
-
             try {
                 axios.post("Login/Login", data)
                     .then(function (response) {
@@ -52,6 +51,7 @@ const LoginModal = () => {
                             navigate("/admin")
                         }
                         else {
+                            console.log("false")
                             toast("Wrong username or password inputted")
                         }
                     })

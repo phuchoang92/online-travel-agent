@@ -19,6 +19,7 @@ namespace Api.Models
         public byte Status { get; set; }
         public byte Style { get; set; }
         public string Description { get; set; }
+        public Guid HotelID { get; set; }
         //public List<IFormFile> roomPictures { get; set; }
     }
 

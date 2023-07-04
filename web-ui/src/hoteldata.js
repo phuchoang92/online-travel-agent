@@ -142,4 +142,6 @@ export const hotels = [
   // Các khách sạn khác...
 ];
 
+
+
 export default hotels;

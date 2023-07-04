@@ -11,6 +11,5 @@ namespace Api.Services
         HotelVM Add(HotelVM hotel);
         void Update(HotelVM hotel);
         void Delete(Guid Id);
-
     }
 }

@@ -26,7 +26,6 @@ namespace Api.Services
                 Price = room.Price,
                 Status = room.Status,
                 Style = room.Style,
-                LinkImg = room.LinkImg,
                 Description = room.Description,
                 HotelID = room.HotelID,
                 
@@ -42,7 +41,6 @@ namespace Api.Services
                 Price = _room.Price,
                 Status = _room.Status,
                 Style = _room.Style,
-                LinkImg = _room.LinkImg,
                 Description = _room.Description,
                 HotelID= room.HotelID,
                 
@@ -69,7 +67,6 @@ namespace Api.Services
                 Price = r.Price,
                 Status = r.Status,
                 Style = r.Style,
-                LinkImg = r.LinkImg,
                 Description = r.Description,
                 HotelID = r.HotelID,
                 
@@ -124,7 +121,6 @@ namespace Api.Services
                 Price = r.Price,
                 Status = r.Status,
                 Style = r.Style,
-                LinkImg = r.LinkImg,
                 Description = r.Description,
             });
 
@@ -144,7 +140,6 @@ namespace Api.Services
                     Price = room.Price,
                     Status = room.Status,
                     Style = room.Style,
-                    LinkImg = room.LinkImg,
                     Description = room.Description,
                     HotelID = room.HotelID,
                 };
@@ -159,7 +154,6 @@ namespace Api.Services
             _room.Status = room.Status;
             _room.Style = room.Style;
             _room.Price = room.Price;
-            _room.LinkImg = room.LinkImg;
             _room.Description = room.Description;
             _room.HotelID = room.HotelID;
             _context.SaveChanges();

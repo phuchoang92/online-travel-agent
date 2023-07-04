@@ -48,7 +48,7 @@ const DetailHotel = ({navigation, route}) => {
       </View>
       <Image source={hotel.image} style={styles.hotelImage} />
       <View style={styles.content}>
-        <Text style={[styles.hotelName, {color: '#0099FF'}]}>{hotel.name}</Text>
+        <Text style={[styles.hotelName, {color: '#0099FF'}]}>{hotel.hotelName}</Text>
         <Text style={styles.hotelDescription}>{hotel.description}</Text>
         <View style={styles.ratingContainer}>
           <Text
