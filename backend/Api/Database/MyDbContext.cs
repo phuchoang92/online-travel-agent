@@ -7,6 +7,7 @@ namespace Api.Database
         public MyDbContext(DbContextOptions options) : base(options) { }
 
         #region DbSet
+        public DbSet<Host> Hosts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
@@ -25,6 +26,10 @@ namespace Api.Database
             {
                 e.ToTable("Hotel");
                 e.HasKey(h => h.HotelID);
+                e.HasOne(e => e.Host)
+                .WithMany(e => e.Hotels)
+                .HasForeignKey(e => e.HostId)
+                .HasConstraintName("FK_Hotel_Host");
             });
 
             modelBuilder.Entity<Room>(e => {
