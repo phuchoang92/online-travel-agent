@@ -8,6 +8,7 @@ import Login from "./components/landingPage/register/Login";
 import AdminHome from "./pages/admin/home/Home";
 import AdminList from "./pages/admin/list/List";
 import HotelList from "./pages/admin/list/HotelList";
+import RoomList from "./pages/admin/list/RoomList";
 import Single from "./pages/admin/single/Single";
 import New from "./pages/admin/new/New";
 import { productInputs, userInputs } from "./formSource";
@@ -46,7 +47,7 @@ function App() {
             />
           </Route>
           <Route path="rooms">
-            <Route index element={<AdminList />} />
+            <Route index element={<RoomList />} />
             <Route path=":roomId" element={<Single />} />
             <Route
               path="new"

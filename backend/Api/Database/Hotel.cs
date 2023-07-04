@@ -18,6 +18,9 @@ namespace Api.Database
         public string Description { get; set; }
         public string HotelRule { get; set; }
         public string Style { get; set; }
+        public Guid HostId { get; set; }
+
+        public Host Host { get; set; }
         public ICollection<Room> Rooms { get; set; }
         public Hotel() {
             Rooms = new List<Room>();
