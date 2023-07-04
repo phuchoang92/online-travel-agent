@@ -111,16 +111,19 @@ const New = ({ inputs, title }) => {
               <h1 className="font-medium  text-2xl  items-center ">{title}</h1>
               <img className="w-[200px]" src="//img.agoda.net/images/header/ec-basics@2x.png" alt="basics page"></img>
             </div>
-            <div>
-              {preInput('Title', 'Name of your place. should be short and catchy as in advertisement')}
-              <input type="text" value={roomTitle} onChange={ev => setRoomTitle(ev.target.value)} placeholder="title, for example: My lovely apt"/>
+
+            {preInput('Title', 'Name of your place. should be short and catchy as in advertisement')}
+            <div className="border-[#dddfe2] border-2 p-4">
+              <input type="text" value={roomTitle} onChange={ev => setRoomTitle(ev.target.value)} placeholder="title, for example: My lovely apt" style={{ width: '100%' }}/>
             </div>
+
+            {preInput('Address', 'Address to this place')}
              <div className="border-[#dddfe2] border-2 p-4">
-              {preInput('Address', 'Address to this place')}
-              <input type="text" value={address} onChange={ev => setAddress(ev.target.value)}placeholder="address"/>
+              <input type="text" value={address} onChange={ev => setAddress(ev.target.value)}placeholder="address" style={{ width: '100%' }}/>
             </div>
             <div>
-              {preInput('Photos','more = better')}
+
+              {preInput('Photos','More = better')}
               <div className="mt-2 grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                 <label className="h-32 cursor-pointer flex items-center gap-1 justify-center border bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
                   <input type="file" multiple className="hidden" onChange={uploadPhoto} />
@@ -136,48 +139,72 @@ const New = ({ inputs, title }) => {
                 ))}
               </div>
             </div>
-            {preInput('Description','description of the place')}
-            <div className="border-[#dddfe2] border-2 p-4">
+            {preInput('Description','Description of the place')}
+            <div >
               <textarea className="w-full border-zinc-300 border-2 h-[100px]" value={description} onChange={ev => setDescription(ev.target.value)}
                         placeholder='Example:
                         • 5-minute walk to/from public transportation
                         • Family-friendly
                         • Big open space, with amazing views and natural light' />
             </div>
-            {preInput('Perks','select all the perks of your place')}
+
+            {preInput('Perks','Select all the perks of your place')}
             <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
               <Perks selected={perks} onChange={setPerks} />
             </div>
-            {preInput('Extra info','house rules, etc')}
-            <textarea className="w-3/5 border-zinc-300 border-2 h-[100px]" value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} />
-            {preInput('Check in&out times','add check in and out times, remember to have some time window for cleaning the room between guests')}
+
+            {preInput('Extra info','House rules, etc')}
+            <textarea className="w-full border-zinc-300 border-2 h-[100px]" value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} />
+           
+            {preInput('Check in&out times','Add check in and out times, remember to have some time window for cleaning the room between guests')}
             <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
               <div>
                 <h3 className="mt-2 -mb-1">Check in time</h3>
+                <div className="input-wrapper2">
                 <input type="text"
                        value={checkIn}
                        onChange={ev => setCheckIn(ev.target.value)}
                        placeholder="14"/>
+                       </div>
               </div>
-              <div>
+
+              <div >
                 <h3 className="mt-2 -mb-1">Check out time</h3>
+                <div className="input-wrapper2">
                 <input type="text"
                        value={checkOut}
                        onChange={ev => setCheckOut(ev.target.value)}
                        placeholder="11" />
+                     </div>
               </div>
+
               <div>
                 <h3 className="mt-2 -mb-1">Max number of guests</h3>
-                <input type="number" value={maxGuests}
-                       onChange={ev => setMaxGuests(ev.target.value)}/>
+                <div className="input-with-controls">
+                <div className="input-wrapper">
+                  <button className="control-button" onClick={() => setMaxGuests(maxGuests - 1)}>-</button>
+                  <input type="number" value={maxGuests}onChange={ev => setMaxGuests(ev.target.value)}/>   
+                  <button className="control-button" onClick={() => setMaxGuests(maxGuests + 1)}>+</button>
+                  </div>
+                </div>
+
               </div>
+
               <div>
                 <h3 className="mt-2 -mb-1">Price per night</h3>
-                <input type="number" value={price}
-                       onChange={ev => setPrice(ev.target.value)}/>
+                <div className="input-with-controls">
+                <div className="input-wrapper">
+                  <button className="control-button" onClick={() => setPrice(price - 1)}>-</button>
+                  <input type="number" value={price} onChange={ev => setPrice(ev.target.value)} />
+                  <button className="control-button" onClick={() => setPrice(price + 1)}>+</button>
+                  </div>
+                </div>
               </div>
+
             </div>
-            <button className="primary my-4 ">Save</button>
+            <button className="primary my-4"  style={{ backgroundColor: 'green',color: 'white',
+              fontSize: '16px',padding: '12px 24px',borderRadius: '8px',boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
+              border: 'none',cursor: 'pointer',}} >Save</button>
           </form>
         </div>
       </div>

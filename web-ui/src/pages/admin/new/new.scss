@@ -75,3 +75,34 @@
 //    }
 //  }
 //}
+.input-with-controls {
+  display: flex;
+  align-items: center;
+}
+
+.control-button {
+  width: 34px;
+  padding: 4px;
+  
+  border: none;
+  color: cadetblue;
+  cursor: pointer;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 4px;
+  border: 1px solid lightgray;
+  text-align: center;
+}
+
+.input-wrapper {
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+  display: inline-block;
+}
+.input-wrapper2 {
+  border: 1px solid lightgray;
+  padding: 0.78rem;
+  display: inline-block;
+}
