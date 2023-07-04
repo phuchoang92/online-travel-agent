@@ -47,7 +47,6 @@ const CustomSort = ({placeholder, style, navigation}) => {
 
     if (selectedNight) {
       const endDate = addDays(date, selectedNight);
-      setSelectedEndDate(format(endDate, 'YY/MM/DD'));
     }
   };
 
@@ -62,13 +61,11 @@ const CustomSort = ({placeholder, style, navigation}) => {
     setSelectedNightStay(nightStay);
     setIsNightStayModalVisible(false);
 
-    if (selectedDate) {
-      const endDate = addDays(new Date(selectedDate), nightStay);
-      setSelectedEndDate(format(endDate, 'YY/MM/DD'));
-    }
+    // if (selectedDate) {
+    //   const endDate = addDays(new Date(selectedDate), nightStay);
+    // }
   };
   const [selectedNight, setSelectedNightStay] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
 
   const [isRoomSelectionModalVisible, setIsRoomSelectionModalVisible] =
     useState(false);
@@ -101,6 +98,12 @@ const CustomSort = ({placeholder, style, navigation}) => {
   const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
   const [selectedStar, setSelectedStar] = useState(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+  // const selectedCheckInDate = selectedDate ? selectedDate : 'Ngày nhận phòng';
+  // const selectedNumberOfNights = selectedNight ? selectedNight : 'Số đêm';
+  // const selectedNumberOfGuestsAndRooms = `${selectedRooms} phòng, ${selectedAdults} người lớn`;
+  const handleSearch = searchParams => {
+    navigation.navigate('HotelList', {searchParams});
+  };
 
   return (
     <View
@@ -265,7 +268,15 @@ const CustomSort = ({placeholder, style, navigation}) => {
             justifyContent: 'center',
             borderRadius: 10,
           }}
-          onPress={() => navigation.navigate('HotelList')}>
+          // eslint-disable-next-line no-undef
+          onPress={() =>
+            handleSearch({
+              nights: selectedNight,
+              departureDate: selectedDate,
+              adults: selectedAdults,
+              rooms: selectedRooms,
+            })
+          }>
           <Text style={styles.findText}>Tim kiem</Text>
         </TouchableOpacity>
       </View>

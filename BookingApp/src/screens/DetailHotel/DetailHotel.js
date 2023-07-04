@@ -15,7 +15,7 @@ const mockReviews = [
 ];
 const DetailHotel = ({navigation, route}) => {
   const {hotel} = route.params;
-
+  const {searchParams} = route.params;
   const renderAmenityItem = ({item}) => {
     return (
       <View style={styles.amenityView}>
@@ -84,7 +84,11 @@ const DetailHotel = ({navigation, route}) => {
         <View style={styles.bookingContainer}>
           <Text style={styles.sectionTitle}>Đặt phòng</Text>
           <Text style={styles.priceText}>Giá: {hotel.price} VND/ngày</Text>
-          <TouchableOpacity style={styles.bookingButton}>
+          <TouchableOpacity
+            style={styles.bookingButton}
+            onPress={() =>
+              navigation.navigate('BookingScreen', {searchParams, hotel})
+            }>
             <Text style={styles.bookingButtonText}>Đặt ngay</Text>
           </TouchableOpacity>
         </View>

@@ -13,6 +13,7 @@ const CustomTextInput = ({
   secure,
   keyboardType,
   imageSource,
+  onTextChange,
 }) => {
   const [text, setText] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -23,6 +24,9 @@ const CustomTextInput = ({
 
   const handleTextChange = newText => {
     setText(newText);
+    if (onTextChange) {
+      onTextChange(newText);
+    }
   };
   const isPassword = () => {
     return secure;

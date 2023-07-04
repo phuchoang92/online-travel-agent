@@ -10,12 +10,15 @@ import {
 } from 'react-native';
 import hotels from './mockData';
 
-const HotelList = ({navigation}) => {
+const HotelList = ({navigation, route}) => {
+  const {searchParams} = route.params;
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
         style={styles.hotelItem}
-        onPress={() => navigation.navigate('DetailHotel', {hotel: item})}>
+        onPress={() =>
+          navigation.navigate('DetailHotel', {searchParams, hotel: item})
+        }>
         <Image source={item.image} style={styles.hotelImage} />
         <View style={styles.hotelInfo}>
           <Text style={styles.hotelName}>{item.name}</Text>
