@@ -14,15 +14,14 @@ namespace Api.Services
         {
             _context = context;
         }
-        public BookingVM Add(BookingVM room)
+        public BookingVM Add(BookingVM booking)
         {
             var _booking = new Booking
             {
-                BookingId = room.BookingId,
-                BookingDate = room.BookingDate,
-                status = room.status,
-                TotalCost = room.TotalCost,
-                
+                BookingId = Guid.NewGuid(),
+                BookingDate = booking.BookingDate,
+                status = booking.status,
+                TotalCost = booking.TotalCost,             
             };
 
             _context.Add(_booking);

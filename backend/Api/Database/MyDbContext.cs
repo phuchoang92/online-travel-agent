@@ -7,6 +7,7 @@ namespace Api.Database
         public MyDbContext(DbContextOptions options) : base(options) { }
 
         #region DbSet
+        public DbSet<Host> Hosts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
@@ -15,13 +16,29 @@ namespace Api.Database
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Infras> Infrases { get; set; }
         public DbSet<Room_Infras> Room_Infrases { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Hotel>(e =>
+            {
+                e.ToTable("Hotel");
+                e.HasKey(h => h.HotelID);
+                e.HasOne(e => e.Host)
+                .WithMany(e => e.Hotels)
+                .HasForeignKey(e => e.HostId)
+                .HasConstraintName("FK_Hotel_Host");
+            });
+
             modelBuilder.Entity<Room>(e => {
                 e.ToTable("Room");
                 e.HasKey(r => r.RoomID);
+                e.HasOne(e => e.Hotels)
+                .WithMany(e => e.Rooms)
+                .HasForeignKey(e => e.HotelID)
+                .HasConstraintName("FK_Hotel_Room");
             });
 
             modelBuilder.Entity<UserDetail>(e => {

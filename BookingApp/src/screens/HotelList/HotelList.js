@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,19 +8,24 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-import hotels from './mockData';
-import axios from 'axios';
+import axios from "../../axios";
 
-const HotelList = ({ navigation,
+const HotelList = ({ navigation, route}) => {
 
-}) => {
+  const [hotelList, setHotelList] =  useState([]);
 
-  // useEffect(  () => {
-  //   axios.get('https://ded5-2a09-bac5-d45c-e6-00-17-303.ngrok-free.app/api/Room')
-  //     .then(function (response) {
-  //       console.log(response.data)
-  //     });
-  // },[])
+  useEffect(  () => {
+    const fetchHotels = async () =>{
+      try{
+        const response = await axios.get('Hotel')
+        const hotels = response.data
+        await setHotelList(hotels)
+      }catch (e){
+        console.log(e);
+      }
+    }
+    fetchHotels();
+  },[])
 
   const renderItem = ({item}) => {
     return (
@@ -29,9 +34,9 @@ const HotelList = ({ navigation,
         onPress={() => navigation.navigate('DetailHotel', {hotel: item})}>
         <Image source={require('../../assets/images/hotel1.png')} style={styles.hotelImage} />
         <View style={styles.hotelInfo}>
-          <Text style={styles.hotelName}>{item.name}</Text>
-          <Text style={styles.hotelRating}>Rating: {item.rating}/10</Text>
-          <Text style={styles.hotelPrice}>Price: {item.price} VND</Text>
+          <Text style={styles.hotelName}>{item.hotelName}</Text>
+          <Text style={styles.hotelRating}>{item.address}/10</Text>
+          <Text style={styles.hotelPrice}>Price: VND</Text>
         </View>
       </TouchableOpacity>
     );
@@ -57,9 +62,9 @@ const HotelList = ({ navigation,
         </Text>
       </View>
       <FlatList
-        data={hotels}
+        data={hotelList}
         renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => item.hotelID.toString()}
       />
     </SafeAreaView>
   );

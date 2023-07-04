@@ -157,7 +157,7 @@ const CustomSort = ({placeholder, style, navigation}) => {
               <TouchableOpacity onPress={showDatePickerModal}>
                 <Image
                   source={require('../assets/icons/icon_calendar.png')}
-                  style={styles.iconCalendear}
+                  style={styles.iconCalendar}
                 />
               </TouchableOpacity>
               {isDatePickerVisible && (
@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginBottom: 10,
   },
-  iconCalendear: {
+  iconCalendar: {
     height: 30,
     width: 30,
     tintColor: 'grey',

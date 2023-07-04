@@ -4,14 +4,16 @@ using Api.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Api.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230703152514_add_HotelTable")]
+    partial class add_HotelTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,27 +70,6 @@ namespace Api.Migrations
                     b.ToTable("BookingDetail");
                 });
 
-            modelBuilder.Entity("Api.Database.Host", b =>
-                {
-                    b.Property<Guid>("HostId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("HostId");
-
-                    b.ToTable("Hosts");
-                });
-
             modelBuilder.Entity("Api.Database.Hotel", b =>
                 {
                     b.Property<Guid>("HotelID")
@@ -98,28 +79,10 @@ namespace Api.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("HostId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("HotelName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HotelRule")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Style")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("HotelID");
-
-                    b.HasIndex("HostId");
 
                     b.ToTable("Hotel");
                 });
@@ -189,6 +152,9 @@ namespace Api.Migrations
 
                     b.Property<Guid>("HotelID")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LinkImg")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -302,18 +268,6 @@ namespace Api.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Api.Database.Hotel", b =>
-                {
-                    b.HasOne("Api.Database.Host", "Host")
-                        .WithMany("Hotels")
-                        .HasForeignKey("HostId")
-                        .HasConstraintName("FK_Hotel_Host")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Host");
-                });
-
             modelBuilder.Entity("Api.Database.RefreshToken", b =>
                 {
                     b.HasOne("Api.Database.User", "User")
@@ -373,11 +327,6 @@ namespace Api.Migrations
             modelBuilder.Entity("Api.Database.Booking", b =>
                 {
                     b.Navigation("BookingDetails");
-                });
-
-            modelBuilder.Entity("Api.Database.Host", b =>
-                {
-                    b.Navigation("Hotels");
                 });
 
             modelBuilder.Entity("Api.Database.Hotel", b =>
