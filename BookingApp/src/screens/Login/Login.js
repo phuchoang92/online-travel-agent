@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import {useNavigation} from '@react-navigation/native';
 import CustomTextInput from '../../components/CustomTextInput';
+import axios from "../../axios";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -16,6 +17,12 @@ const Login = () => {
   const [password, setPassword] = useState('')
 
   const handleLogin = () => {
+    axios.post('Login/Login', {
+      username: username,
+      password: password
+    }).then((response) => {
+      console.log(response.data)
+    })
     navigation.navigate('Home')
   }
 

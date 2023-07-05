@@ -3,6 +3,8 @@ using Api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Api.Controllers
 {
@@ -36,9 +38,15 @@ namespace Api.Controllers
             try
             {
                 var data = _HotelRep.GetById(id);
+                
                 if (data != null)
                 {
-                    return Ok(data);
+                    string new_data = JsonSerializer.Serialize(data, new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.IgnoreCycles,
+                        WriteIndented = true
+                    });
+                    return Ok(new_data);
                 }
                 else return NotFound();
             }

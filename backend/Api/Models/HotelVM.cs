@@ -13,7 +13,8 @@ namespace Api.Models
         public string Description { get; set; }
         public string HotelRule { get; set; }
         public string Styles { get; set; }
-        public List<Room> Rooms { get; set; }
+        public int MinPrice { get; set; }
+        public List<RoomVM> Rooms { get; set; }
         public Guid HostId { get; set; }
     }
 }

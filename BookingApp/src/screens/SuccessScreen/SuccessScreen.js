@@ -2,13 +2,12 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const SuccessScreen = ({route, navigation}) => {
-  const {name, phoneNumber, email, searchParams, hotel} = route.params;
-  console.log('1', searchParams);
-  console.log(route);
+  const {name, phoneNumber, email, searchParams, room} = route.params;
+
   const handleComplete = () => {
     const booking = {
-      hotelName: hotel.name,
-      price: hotel.price,
+      hotelName: room.HotelID,
+      price: room.Price,
       checkInDate: searchParams.departureDate,
     };
 
@@ -41,7 +40,7 @@ const SuccessScreen = ({route, navigation}) => {
           Số khách: {searchParams.adults} người
         </Text>
         <Text style={styles.bookingInfoText}>
-          Tổng giá tiền: {hotel.price} VND
+          Tổng giá tiền: {room.Price} VND
         </Text>
       </View>
 
