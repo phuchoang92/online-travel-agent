@@ -8,21 +8,25 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import CustomTextInput from '../../../components/CustomTextInput';
 import CustomSort from '../../../components/CustomSort';
 import TravelDiscounts from '../../../components/TravelDiscounts';
 import FamousPlaces from '../../../components/FamousPlaces';
 
 const Home = ({navigation}) => {
+  const tabBarHeight = useBottomTabBarHeight();
+
   const scrollToBottom = () => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollToEnd({animated: true});
     }
   };
+
   const scrollViewRef = React.useRef(null);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <CustomTextInput
           placeholder={'Search hotel, place, ...'}
@@ -44,7 +48,10 @@ const Home = ({navigation}) => {
       </View>
       <ScrollView
         ref={scrollViewRef}
-        contentContainerStyle={styles.container}
+        contentContainerStyle={[
+          styles.scrollViewContent,
+          {paddingBottom: tabBarHeight},
+        ]}
         keyboardShouldPersistTaps="handled"
         automaticallyAdjustContentInsets={false}
         onContentSizeChange={scrollToBottom}
@@ -72,7 +79,7 @@ const Home = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: '#FFF',
   },
   header: {
@@ -113,6 +120,9 @@ const styles = StyleSheet.create({
   famousPlacesText: {
     fontWeight: 'bold',
     fontSize: 20,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
 });
 

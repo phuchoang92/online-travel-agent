@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -5,15 +6,27 @@ import {
   View,
   Image,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
-import React from 'react';
 
 const UserInfoScreen = ({navigation}) => {
+  const [username, setUsername] = useState('Long Pham');
+  const [email, setEmail] = useState('longphamk2kk@gmail.com');
+  const [age, setAge] = useState('25');
+  const [address, setAddress] = useState('302 Lang.St');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
   const handlePaymentPress = () => {
     navigation.navigate('PaymentScreen');
   };
+
   const handleLogout = () => {
     navigation.navigate('Login');
+  };
+
+  const handleSaveChanges = () => {
+    // Implement your logic to save changes here
+    console.log('Save changes');
   };
 
   return (
@@ -27,20 +40,42 @@ const UserInfoScreen = ({navigation}) => {
             style={styles.avatar}
             source={require('../../../assets/images/onboarding1.png')}
           />
-          <Text style={styles.username}>Long Pham</Text>
+          <Text style={styles.username}>{username}</Text>
         </View>
         <View style={styles.infoContainer}>
           <View style={styles.infoItem}>
             <Text style={styles.label}>Email:</Text>
-            <Text style={styles.value}>longphamk2kk@gmail.com</Text>
+            <TextInput
+              style={styles.value}
+              value={email}
+              onChangeText={setEmail}
+            />
           </View>
           <View style={styles.infoItem}>
             <Text style={styles.label}>Age:</Text>
-            <Text style={styles.value}>25</Text>
+            <TextInput
+              style={styles.value}
+              value={age}
+              onChangeText={setAge}
+              keyboardType="numeric"
+            />
           </View>
           <View style={styles.infoItem}>
             <Text style={styles.label}>Address:</Text>
-            <Text style={styles.value}>302 Lang.St</Text>
+            <TextInput
+              style={styles.value}
+              value={address}
+              onChangeText={setAddress}
+            />
+          </View>
+          <View style={styles.infoItem}>
+            <Text style={styles.label}>Phone Number:</Text>
+            <TextInput
+              style={styles.value}
+              value={phoneNumber}
+              onChangeText={setPhoneNumber}
+              keyboardType="phone-pad"
+            />
           </View>
         </View>
         <TouchableOpacity
@@ -51,6 +86,11 @@ const UserInfoScreen = ({navigation}) => {
           <Text style={styles.paymentButton}>Update Payment</Text>
         </TouchableOpacity>
       </View>
+      <TouchableOpacity
+        style={styles.saveChangesButton}
+        onPress={handleSaveChanges}>
+        <Text style={styles.saveChangesButtonText}>Save Changes</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
@@ -123,6 +163,19 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  saveChangesButton: {
+    position: 'absolute',
+    bottom: 80,
+    alignSelf: 'center',
+    backgroundColor: 'green',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
+  saveChangesButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   logoutButton: {
     position: 'absolute',
