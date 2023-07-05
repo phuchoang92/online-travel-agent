@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -6,9 +6,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
-  FlatList, ScrollView,
-} from "react-native";
-import axios from "../../axios";
+  FlatList,
+  ScrollView,
+} from 'react-native';
+import axios from '../../axios';
 const mockReviews = [
   {comment: 'Great hotel, highly recommend!', author: 'John Doe'},
   {comment: 'Excellent service and comfortable rooms.', author: 'Jane Smith'},
@@ -25,7 +26,7 @@ const DetailHotel = ({navigation, route}) => {
       .then(async (response) => {
         setHotelDetail(response.data)
         // console.log()
-        await setRoomList(response.data.Rooms)
+        setRoomList(response.data.Rooms)
       })
   },[hotel.hotelID])
 
@@ -59,9 +60,14 @@ const DetailHotel = ({navigation, route}) => {
           Chi tiết khách sạn
         </Text>
       </View>
-      <Image source={require('../../assets/images/hotel1.png')} style={styles.hotelImage} />
+      <Image
+        source={require('../../assets/images/hotel1.png')}
+        style={styles.hotelImage}
+      />
       <View style={styles.content}>
-        <Text style={[styles.hotelName, {color: '#020202'}]}>{hotel.hotelName}</Text>
+        <Text style={[styles.hotelName, {color: '#020202'}]}>
+          {hotel.hotelName}
+        </Text>
         <View style={styles.ratingContainer}>
           <Text
             style={[styles.ratingText, {fontWeight: 'bold', color: '#020202'}]}>
