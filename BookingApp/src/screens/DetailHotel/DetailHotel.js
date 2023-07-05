@@ -96,7 +96,11 @@ const DetailHotel = ({navigation, route}) => {
           <Text style={styles.priceText}>Giá: {hotel.price} VND/ngày</Text>
           <Text style={styles.sectionTitle}>Mô tả</Text>
           <Text style={styles.hotelDescription}>{hotel.description}</Text>
-          <TouchableOpacity style={styles.bookingButton}>
+          <TouchableOpacity
+            style={styles.bookingButton}
+            onPress={() =>
+              navigation.navigate('BookingScreen', {searchParams, hotel})
+            }>
             <Text style={styles.bookingButtonText}>Đặt ngay</Text>
           </TouchableOpacity>
         </View>

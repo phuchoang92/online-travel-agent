@@ -63,7 +63,6 @@ const CustomSort = ({placeholder, style, navigation}) => {
 
     if (selectedNight) {
       const endDate = addDays(date, selectedNight);
-      setSelectedEndDate(format(endDate, 'YY/MM/DD'));
     }
   };
 
@@ -79,10 +78,9 @@ const CustomSort = ({placeholder, style, navigation}) => {
     setSelectedNightStay(nightStay);
     setIsNightStayModalVisible(false);
 
-    if (selectedDate) {
-      const endDate = addDays(new Date(selectedDate), nightStay);
-      setSelectedEndDate(format(endDate, 'YY/MM/DD'));
-    }
+    // if (selectedDate) {
+    //   const endDate = addDays(new Date(selectedDate), nightStay);
+    // }
   };
 
   const showRoomSelectionModal = () => {
@@ -106,6 +104,13 @@ const CustomSort = ({placeholder, style, navigation}) => {
     setSelectedMaxPrice(maxPrice);
     setSelectedStar(star);
     setSelectedPaymentMethod(paymentMethod);
+  };
+
+  // const selectedCheckInDate = selectedDate ? selectedDate : 'Ngày nhận phòng';
+  // const selectedNumberOfNights = selectedNight ? selectedNight : 'Số đêm';
+  // const selectedNumberOfGuestsAndRooms = `${selectedRooms} phòng, ${selectedAdults} người lớn`;
+  const handleSearch = searchParams => {
+    navigation.navigate('HotelList', {searchParams});
   };
 
   return (
@@ -270,9 +275,15 @@ const CustomSort = ({placeholder, style, navigation}) => {
             justifyContent: 'center',
             borderRadius: 10,
           }}
-          onPress={() => navigation.navigate('HotelList', {
-
-          })}>
+          // eslint-disable-next-line no-undef
+          onPress={() =>
+            handleSearch({
+              nights: selectedNight,
+              departureDate: selectedDate,
+              adults: selectedAdults,
+              rooms: selectedRooms,
+            })
+          }>
           <Text style={styles.findText}>Search</Text>
         </TouchableOpacity>
       </View>
