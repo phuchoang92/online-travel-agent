@@ -268,7 +268,7 @@ const CustomSort = ({placeholder, style, navigation}) => {
       <View style={{alignItems: 'center'}}>
         <TouchableOpacity
           style={{
-            backgroundColor: '#003580',
+            backgroundColor: '#1A94FF',
             height: 40,
             width: 250,
             alignItems: 'center',
@@ -278,7 +278,7 @@ const CustomSort = ({placeholder, style, navigation}) => {
           // eslint-disable-next-line no-undef
           onPress={() =>
             handleSearch({
-              nights: selectedNight,
+              nights: 2,
               departureDate: selectedDate,
               adults: selectedAdults,
               rooms: selectedRooms,

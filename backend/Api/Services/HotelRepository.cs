@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Net;
+using System.Text.Json;
+using System.Collections;
 
 namespace Api.Services
 {
@@ -75,18 +77,36 @@ namespace Api.Services
         public HotelVM GetById(Guid id)
         {
             var _hotel = _context.Hotels.SingleOrDefault(b => b.HotelID == id);
-            var _rooms = _context.Rooms.Where(b => b.HotelID == id).ToList();
+            var _rooms = _context.Rooms
+                .Select(_rooms => new RoomVM
+                {
+                    RoomID = _rooms.RoomID,
+                    RoomNumber = _rooms.RoomNumber,
+                    Price = _rooms.Price,
+                    Status = _rooms.Status,
+                    Description = _rooms.Description,
+                    HotelID = _rooms.HotelID
+                })
+                .Where(b => b.HotelID == id).ToList();
+
+            int lowest_price = 0;
+            if (_rooms.Any()) {
+                lowest_price = _rooms.Min(room => room.Price);
+            }
+            
             if (_hotel != null)
             {
                 return new HotelVM
                 {
+                    HotelID = _hotel.HotelID,
                     HotelName = _hotel.HotelName,
                     HotelRule = _hotel.HotelRule,
                     Address = _hotel.Address,
                     City = _hotel.City,
                     Description = _hotel.Description,
                     Styles = _hotel.Style,
-                    Rooms = (List<Room>)_rooms
+                    MinPrice = lowest_price,
+                    Rooms = (List<RoomVM>)_rooms
                 };
             }
 

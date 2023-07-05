@@ -16,16 +16,18 @@ const mockReviews = [
 ];
 const DetailHotel = ({navigation, route}) => {
   const {hotel} = route.params;
-  const  [hotelDetail, setHotelDetail] = useState()
+  const {searchParams} = route.params
+  const [hotelDetail, setHotelDetail] = useState()
+  const [roomList, setRoomList] = useState([])
 
   useEffect(() => {
     axios.get("Hotel/"+hotel.hotelID)
-      .then((response) => {
-        console.log(response.data)
+      .then(async (response) => {
         setHotelDetail(response.data)
+        // console.log()
+        await setRoomList(response.data.Rooms)
       })
-
-  })
+  },[hotel.hotelID])
 
   const renderAmenityItem = ({item}) => {
     return (
@@ -44,7 +46,7 @@ const DetailHotel = ({navigation, route}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={[styles.header, {backgroundColor: '#003580'}]}>
+      <View style={[styles.header, {backgroundColor: '#1A94FF'}]}>
         <TouchableOpacity
           style={{right: 90}}
           onPress={() => navigation.goBack()}>
@@ -54,7 +56,7 @@ const DetailHotel = ({navigation, route}) => {
           />
         </TouchableOpacity>
         <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>
-          Chi tiet khach san
+          Chi tiết khách sạn
         </Text>
       </View>
       <Image source={require('../../assets/images/hotel1.png')} style={styles.hotelImage} />
@@ -93,15 +95,15 @@ const DetailHotel = ({navigation, route}) => {
         </View>
         <View style={styles.bookingContainer}>
           <Text style={styles.sectionTitle}>Đặt phòng</Text>
-          <Text style={styles.priceText}>Giá: {hotel.price} VND/ngày</Text>
+          <Text style={styles.priceText}>Giá: {hotel.minPrice} VND/ngày</Text>
           <Text style={styles.sectionTitle}>Mô tả</Text>
-          <Text style={styles.hotelDescription}>{hotel.description}</Text>
+          {/*<Text style={styles.hotelDescription}>{hotel.description}</Text>*/}
           <TouchableOpacity
             style={styles.bookingButton}
             onPress={() =>
-              navigation.navigate('BookingScreen', {searchParams, hotel})
+              navigation.navigate('RoomsScreen', {hotelDetail, searchParams})
             }>
-            <Text style={styles.bookingButtonText}>Đặt ngay</Text>
+            <Text style={styles.bookingButtonText}>Chọn phòng</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -153,13 +155,13 @@ const styles = StyleSheet.create({
   ratingValue: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#0099FF',
+    color: '#181616',
     marginRight: 5,
   },
   reviewsText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#0099FF',
+    color: '#0a0a0a',
   },
   amenitiesContainer: {
     marginBottom: 10,
@@ -168,7 +170,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: '#0099FF',
+    color: '#231f1f',
   },
   amenityView: {
     backgroundColor: '#ECECEC',
@@ -192,7 +194,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   bookingButton: {
-    backgroundColor: '#0099FF',
+    backgroundColor: '#1A94FF',
     paddingVertical: 10,
     borderRadius: 5,
     alignItems: 'center',
@@ -207,12 +209,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   reviewItem: {
-    backgroundColor: '#99FFFF',
+    backgroundColor: '#ffffff',
     margin: 5,
     borderRadius: 10,
     height: 70,
     padding: 5,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#000000'
   },
   reviewAuthor: {
     fontSize: 15,

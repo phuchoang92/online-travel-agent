@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Hvv4l2xZiYLzi91MqUqsGsPuLi8AiAsviFKagvE3+aldLfzPlyBICIKAdq1j64yOTO2oa3Qv6o0l538de73fYw==",
+  "dgSpecHash": "KRb21HX0lN6YN+lkFmKuUiUINxOkxLY5bR32guiPHb/eQcCJg8Xi5x4zeClnYG+4ESKlntrpY5nZ+8yjAJR3lg==",
   "success": true,
   "projectFilePath": "C:\\myproject\\online-travel-agent\\backend\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chang\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.10\\microsoft.aspnetcore.authentication.jwtbearer.5.0.10.nupkg.sha512",
+    "C:\\Users\\chang\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.18\\microsoft.aspnetcore.jsonpatch.6.0.18.nupkg.sha512",
+    "C:\\Users\\chang\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.18\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.18.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
@@ -38,6 +40,8 @@
     "C:\\Users\\chang\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\chang\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\chang\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\chang\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",

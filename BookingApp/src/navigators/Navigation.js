@@ -21,6 +21,7 @@ import HotelList from '../screens/HotelList/HotelList';
 import DetailHotel from '../screens/DetailHotel/DetailHotel';
 import BookingScreen from '../screens/BookingScreen/BookingScreen';
 import SuccessScreen from '../screens/SuccessScreen/SuccessScreen';
+import RoomsScreen from "../screens/RoomsScreen/RoomsScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -138,6 +139,7 @@ function Navigation() {
       <Stack.Screen name="DetailHotel" component={DetailHotel} />
       <Stack.Screen name="BookingScreen" component={BookingScreen} />
       <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
+      <Stack.Screen name="RoomsScreen" component={RoomsScreen}/>
     </Stack.Navigator>
   );
 }

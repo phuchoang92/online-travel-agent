@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,43 +7,33 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-import axios from "../../axios";
 
-const HotelList = ({navigation, route}) => {
+const RoomsScreen = ({navigation, route}) => {
+
+  const {hotelDetail} = route.params;
   const {searchParams} = route.params;
-  const [hotelList, setHotelList] =  useState([]);
-
-  useEffect(  () => {
-    // console.log(searchParams)
-    const fetchHotels = async () =>{
-      try{
-        const response = await axios.get('Hotel')
-        setHotelList(response.data)
-      }catch (e){
-        console.log(e);
-      }
-    }
-    fetchHotels();
-  },[])
 
   const renderItem = ({item}) => {
+    item['hotelName'] = hotelDetail.HotelName
     return (
-      <TouchableOpacity
-        style={styles.hotelItem}
-        onPress={() => navigation.navigate('DetailHotel', {hotel: item, searchParams})}>
+      <View style={styles.hotelItem}>
         <Image source={require('../../assets/images/hotel1.png')} style={styles.hotelImage} />
         <View style={styles.hotelInfo}>
-          <Text style={styles.hotelName}>{item.hotelName}</Text>
-          <Text style={styles.hotelRating}>{item.address}</Text>
-          <Text style={styles.hotelPrice}>Price: {item.minPrice} VND</Text>
+          <Text style={styles.hotelName}>{item.RoomNumber}</Text>
+          <Text style={styles.hotelRating}>{item.Description}</Text>
+          <Text style={styles.hotelPrice}>Price: {item.Price} VND</Text>
         </View>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('BookingScreen', {room: item, searchParams})}>
+          <Text style={styles.bookingButtonText}>Đặt Phòng</Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={[styles.header, {backgroundColor: '#3399FF'}]}>
+      <View style={[styles.header, {backgroundColor: '#1A94FF'}]}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image
             source={require('../../assets/icons/icon_back.png')}
@@ -58,19 +47,25 @@ const HotelList = ({navigation, route}) => {
             fontSize: 20,
             fontWeight: 'bold',
           }}>
-          Danh sach khach san
+          Danh sách phòng
         </Text>
       </View>
       <FlatList
-        data={hotelList}
+        data={hotelDetail.Rooms}
         renderItem={renderItem}
-        keyExtractor={item => item.hotelID.toString()}
+        keyExtractor={item => item.RoomID.toString()}
       />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  bookingButtonText: {
+    backgroundColor: '#1A94FF',
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   container: {
     flex: 1,
   },
@@ -119,4 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HotelList;
+export default RoomsScreen;

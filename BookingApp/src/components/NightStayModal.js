@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
-  FlatList,
-} from 'react-native';
+  FlatList, ScrollView,
+} from "react-native";
 
 const NightStayModal = ({
   isVisible,
@@ -64,6 +64,7 @@ const NightStayModal = ({
     <Modal visible={isVisible} animationType="slide" transparent>
       <View style={styles.overlay}>
         <View style={[styles.modalContainer, {height: modalHeight}]}>
+          <ScrollView>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Chọn số đêm nghỉ</Text>
             <FlatList
@@ -83,6 +84,7 @@ const NightStayModal = ({
               <Text style={styles.buttonText}>Xác nhận</Text>
             </TouchableOpacity>
           </View>
+          </ScrollView>
         </View>
       </View>
     </Modal>
