@@ -25,8 +25,8 @@ namespace Api.Services
                 Address = hotel.Address,
                 City = hotel.City,
                 Description = hotel.Description,
-                Style = hotel.Styles
-
+                Style = hotel.Styles,
+                HostId = hotel.HostId
             };
 
             _context.Add(_hotel);
@@ -39,7 +39,8 @@ namespace Api.Services
                 Address = _hotel.Address,
                 City = _hotel.City,
                 Description = _hotel.Description,
-                Styles = _hotel.Style
+                Styles = _hotel.Style,
+                HostId = _hotel.HostId
             };
         }
 
@@ -74,6 +75,7 @@ namespace Api.Services
         public HotelVM GetById(Guid id)
         {
             var _hotel = _context.Hotels.SingleOrDefault(b => b.HotelID == id);
+            var _rooms = _context.Rooms.Where(b => b.HotelID == id).ToList();
             if (_hotel != null)
             {
                 return new HotelVM
@@ -83,7 +85,8 @@ namespace Api.Services
                     Address = _hotel.Address,
                     City = _hotel.City,
                     Description = _hotel.Description,
-                    Styles = _hotel.Style
+                    Styles = _hotel.Style,
+                    Rooms = (List<Room>)_rooms
                 };
             }
 

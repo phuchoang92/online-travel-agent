@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -6,8 +6,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
-  FlatList,
-} from 'react-native';
+  FlatList, ScrollView,
+} from "react-native";
+import axios from "../../axios";
 const mockReviews = [
   {comment: 'Great hotel, highly recommend!', author: 'John Doe'},
   {comment: 'Excellent service and comfortable rooms.', author: 'Jane Smith'},
@@ -15,6 +16,16 @@ const mockReviews = [
 ];
 const DetailHotel = ({navigation, route}) => {
   const {hotel} = route.params;
+  const  [hotelDetail, setHotelDetail] = useState()
+
+  useEffect(() => {
+    axios.get("Hotel/"+hotel.hotelID)
+      .then((response) => {
+        console.log(response.data)
+        setHotelDetail(response.data)
+      })
+
+  })
 
   const renderAmenityItem = ({item}) => {
     return (
@@ -33,9 +44,9 @@ const DetailHotel = ({navigation, route}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={[styles.header, {backgroundColor: '#0099FF'}]}>
+      <View style={[styles.header, {backgroundColor: '#003580'}]}>
         <TouchableOpacity
-          style={{right: 115}}
+          style={{right: 90}}
           onPress={() => navigation.goBack()}>
           <Image
             source={require('../../assets/icons/icon_back.png')}
@@ -46,13 +57,12 @@ const DetailHotel = ({navigation, route}) => {
           Chi tiet khach san
         </Text>
       </View>
-      <Image source={hotel.image} style={styles.hotelImage} />
+      <Image source={require('../../assets/images/hotel1.png')} style={styles.hotelImage} />
       <View style={styles.content}>
-        <Text style={[styles.hotelName, {color: '#0099FF'}]}>{hotel.hotelName}</Text>
-        <Text style={styles.hotelDescription}>{hotel.description}</Text>
+        <Text style={[styles.hotelName, {color: '#020202'}]}>{hotel.hotelName}</Text>
         <View style={styles.ratingContainer}>
           <Text
-            style={[styles.ratingText, {fontWeight: 'bold', color: '#0099FF'}]}>
+            style={[styles.ratingText, {fontWeight: 'bold', color: '#020202'}]}>
             Đánh giá:
           </Text>
           <Text style={styles.ratingValue}>{hotel.rating}/10</Text>
@@ -63,7 +73,7 @@ const DetailHotel = ({navigation, route}) => {
             data={mockReviews} // Sử dụng dữ liệu giả định
             renderItem={renderReviewItem}
             keyExtractor={(item, index) => index.toString()}
-            horizontal
+            horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
         </View>
@@ -84,6 +94,8 @@ const DetailHotel = ({navigation, route}) => {
         <View style={styles.bookingContainer}>
           <Text style={styles.sectionTitle}>Đặt phòng</Text>
           <Text style={styles.priceText}>Giá: {hotel.price} VND/ngày</Text>
+          <Text style={styles.sectionTitle}>Mô tả</Text>
+          <Text style={styles.hotelDescription}>{hotel.description}</Text>
           <TouchableOpacity style={styles.bookingButton}>
             <Text style={styles.bookingButtonText}>Đặt ngay</Text>
           </TouchableOpacity>

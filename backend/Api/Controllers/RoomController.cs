@@ -103,33 +103,13 @@ namespace Api.Controllers
 
         [HttpPost , DisableRequestSizeLimit]
 
-        public Task<IActionResult> AddAsync()
+        public Task<IActionResult> AddAsync(RoomVM roomInfo)
         {
-
             try
             {
-                var data = Request.Form.Files[0];
-                //foreach (var file in data)
-                //{
-
-                //}
-                RoomVM roomInfo = new RoomVM();
+               
                 _roomRep.Add(roomInfo);
 
-                //foreach (var item in roomInfo.roomPictures)
-                //{
-                //    if (item.FileName == null || item.FileName.Length == 0)
-                //    {
-                //        return Content("File not selected");
-                //    }
-                //    var path = Path.Combine(_appSettings.WebRootPath, "Images/", item.FileName);
-
-                //    using (FileStream stream = new FileStream(path, FileMode.Create))
-                //    {
-                //        await item.CopyToAsync(stream);
-                //        stream.Close();
-                //    }
-                //}
                 return Task.FromResult<IActionResult>(Ok());
             }
             catch

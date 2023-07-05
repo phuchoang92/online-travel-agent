@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Api.Database;
+using System;
+using System.Collections.Generic;
 
 namespace Api.Models
 {
@@ -11,5 +13,7 @@ namespace Api.Models
         public string Description { get; set; }
         public string HotelRule { get; set; }
         public string Styles { get; set; }
+        public List<Room> Rooms { get; set; }
+        public Guid HostId { get; set; }
     }
 }
