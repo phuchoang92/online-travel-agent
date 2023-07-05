@@ -23,7 +23,9 @@ const CustomTextInput = ({
   };
 
   const handleTextChange = newText => {
-    setText(newText);
+    if (setText) {
+      setText(newText);
+    }
   };
   const isPassword = () => {
     return secure;

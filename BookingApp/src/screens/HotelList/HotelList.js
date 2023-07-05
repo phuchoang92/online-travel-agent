@@ -10,8 +10,10 @@ import {
 } from 'react-native';
 import axios from "../../axios";
 
-const HotelList = ({ navigation, route}) => {
 
+
+const HotelList = ({navigation, route}) => {
+  const {searchParams} = route.params;
   const [hotelList, setHotelList] =  useState([]);
 
   useEffect(  () => {
