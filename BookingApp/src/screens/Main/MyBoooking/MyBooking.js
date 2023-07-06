@@ -1,14 +1,18 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
 const MyBooking = ({route}) => {
-  const bookings = route.params.bookings;
+  const [bookingList, setBookingList] = useState([]);
 
-  console.log(bookings, 'aloalo');
+
+  useEffect(()=>{
+
+  },[])
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Danh sách đặt phòng của bạn</Text>
-      {bookings.map((booking, index) => (
+      {bookingList.map((booking, index) => (
         <View key={index} style={styles.bookingItem}>
           <Text style={styles.bookingText}>{booking.hotelName}</Text>
           <Text style={styles.bookingText}>Giá tiền: {booking.price} VND</Text>

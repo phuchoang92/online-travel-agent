@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Onboarding2 = () => {
   const navigation = useNavigation();
   const imageHotel3 = require('../../assets/images/hotel3.png');
@@ -23,7 +24,13 @@ const Onboarding2 = () => {
       </View>
       <View style={styles.buttonView}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Login')}
+          onPress={async () => {
+            const authDataSerialized = await AsyncStorage.getItem('token');
+            if(authDataSerialized){
+              navigation.navigate('Home');
+            }
+            navigation.navigate('Login')
+          }}
           style={styles.buttonSkip}>
           <Text style={styles.textSkip}>Get Started</Text>
         </TouchableOpacity>

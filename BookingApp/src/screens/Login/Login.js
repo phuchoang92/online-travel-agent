@@ -4,26 +4,48 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Image,
+  Image
 } from 'react-native';
-import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useEffect, useState } from "react";
 import {useNavigation} from '@react-navigation/native';
 import CustomTextInput from '../../components/CustomTextInput';
 import axios from "../../axios";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const navigation = useNavigation();
+  const {authState} = useState(AuthContext);
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [token , setToken] = useState('')
+
+  async function loadStorageData() {
+    const authDataSerialized = await AsyncStorage.getItem('token');
+    console.log(authDataSerialized)
+    if(authDataSerialized){
+      setToken(authDataSerialized)
+      navigation.navigate('Home');
+    }
+  }
+
+  useEffect( () => {
+    loadStorageData()
+  },[])
 
   const handleLogin = () => {
-    axios.post('Login/Login', {
-      username: username,
-      password: password
-    }).then((response) => {
-      console.log(response.data)
-    })
-    navigation.navigate('Home')
+      axios.post('Login/Login', {
+        username: username,
+        password: password
+      }).then((response) => {
+        if (response.data.success === true){
+          const token = response.data.data.accessToken
+          AsyncStorage.setItem('token', token);
+          navigation.navigate('Home')
+        }
+      }).catch(e=> {
+        console.log(e)
+      })
   }
 
   return (

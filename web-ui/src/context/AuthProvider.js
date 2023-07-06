@@ -43,7 +43,7 @@ const AuthReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
-    const [user, setUser] = useState()
+    const [user, setUser] = useState();
 
     useEffect(() => {
         if (state.token != null){

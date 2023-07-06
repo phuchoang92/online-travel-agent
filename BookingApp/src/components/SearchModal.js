@@ -15,41 +15,41 @@ const SearchModal = ({isVisible, onClose, onLocationSelect}) => {
   const [searchResults, setSearchResults] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchHistory, setSearchHistory] = useState([
-    'Hà Nội',
+    'Hanoi',
     'Hồ Chí Minh',
     'Đà Nẵng',
   ]);
 
   const provinces = [
-    'Hồ Chí Minh',
-    'Hà Nội',
-    'Đà Nẵng',
-    'Bình Dương',
-    'Cần Thơ',
-    'Đồng Nai',
+    'Ho Chi Minh',
+    'Hanoi',
+    'Da Nang',
+    'Binh Duong',
+    'Can Tho',
+    'Đong Nai',
     'Gia Lai',
-    'Hà Giang',
-    'Hà Nam',
-    'Hà Tĩnh',
-    'Hải Dương',
-    'Hải Phòng',
-    'Hòa Bình',
-    'Hậu Giang',
-    'Hưng Yên',
-    'Khánh Hòa',
-    'Kiên Giang',
+    'Ha Giang',
+    'Ha Nam',
+    'Ha Tinh',
+    'Hai Duong',
+    'Hai Phong',
+    'Hoa Bình',
+    'Hau Giang',
+    'Hung Yen',
+    'Khanh Hoa',
+    'Kien Giang',
     'Kon Tum',
-    'Lai Châu',
+    'Lai Chau',
     'Lào Cai',
-    'Lạng Sơn',
-    'Lâm Đồng',
+    'Lạng Son',
+    'Lâm Đong',
     'Long An',
-    'Nam Định',
-    'Nghệ An',
-    'Ninh Bình',
-    'Ninh Thuận',
-    'Phú Thọ',
-    'Phú Yên',
+    'Nam Đinh',
+    'Nghe An',
+    'Ninh Binh',
+    'Ninh Thuan',
+    'Phu Thọ',
+    'Phu Yên',
     'Quảng Bình',
     'Quảng Nam',
     'Quảng Ngãi',
@@ -77,6 +77,8 @@ const SearchModal = ({isVisible, onClose, onLocationSelect}) => {
     'Sóc Trăng',
     'Bạc Liêu',
     'Cà Mau',
+    'Phu Quoc',
+    'Da Lat'
   ];
 
   const windowHeight = Dimensions.get('window').height;
@@ -89,7 +91,6 @@ const SearchModal = ({isVisible, onClose, onLocationSelect}) => {
       const filteredProvinces = provinces.filter(province =>
         province.toLowerCase().includes(searchText.toLowerCase()),
       );
-
       setSearchResults(filteredProvinces);
       setShowSuggestions(true);
     }

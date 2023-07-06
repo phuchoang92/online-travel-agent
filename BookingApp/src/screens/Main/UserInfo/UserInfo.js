@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const UserInfoScreen = ({navigation}) => {
   const [username, setUsername] = useState('Long Pham');
@@ -21,7 +22,8 @@ const UserInfoScreen = ({navigation}) => {
   };
 
   const handleLogout = () => {
-    navigation.navigate('Login');
+    AsyncStorage.removeItem('token').then(r => console.log(r))
+    navigation.navigate('Home');
   };
 
   const handleSaveChanges = () => {

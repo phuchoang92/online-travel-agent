@@ -14,12 +14,18 @@ const HotelList = ({navigation, route}) => {
   const {searchParams} = route.params;
   const [hotelList, setHotelList] =  useState([]);
 
+  function checkCity(city) {
+    return city.city === searchParams.city;
+  }
+
   useEffect(  () => {
-    // console.log(searchParams)
+    console.log(searchParams)
     const fetchHotels = async () =>{
       try{
         const response = await axios.get('Hotel')
-        setHotelList(response.data)
+        // console.log(response.data)
+        const result = response.data.filter(checkCity)
+        setHotelList(result)
       }catch (e){
         console.log(e);
       }

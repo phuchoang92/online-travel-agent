@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from "react";
 import {
   View,
   TouchableOpacity,
@@ -7,15 +7,34 @@ import {
   SafeAreaView,
 } from 'react-native';
 import CustomTextInput from '../../components/CustomTextInput';
+import axios from "../../axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const BookingScreen = ({navigation, route}) => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('')
   const {searchParams} = route.params;
   const {room} = route.params;
 
-  console.log(room)
+  async function loadStorageData() {
+    const authDataSerialized = await AsyncStorage.getItem('token');
+    console.log(authDataSerialized)
+    await axios.post("Login/Auth", {
+      accessToken: authDataSerialized,
+      refreshToken: "",
+    }).then((res)=>{
+      console.log(res.data.data)
+      setUserId(res.data.data)
+    })
+    console.log(room)
+    console.log(searchParams)
+  }
+
+  useEffect( () => {
+    loadStorageData()
+  },[])
 
   const handleBooking = () => {
     console.log('Booking details:', {
@@ -23,6 +42,20 @@ const BookingScreen = ({navigation, route}) => {
       phoneNumber,
       email,
     });
+
+    axios.post('Booking',{
+      totalCost: room.Price
+    }).then((response)=>{
+      const bookingID  = response.data.bookingID;
+      axios.post('BookingDetail',{
+        bookingId: bookingID,
+        roomID: room.RoomID,
+        id: userId,
+        start: searchParams.departureDate,
+        numPeple: searchParams.adults
+      })
+    })
+
     navigation.navigate('SuccessScreen', {
       name,
       phoneNumber,

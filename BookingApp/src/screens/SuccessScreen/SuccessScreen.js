@@ -5,15 +5,7 @@ const SuccessScreen = ({route, navigation}) => {
   const {name, phoneNumber, email, searchParams, room} = route.params;
 
   const handleComplete = () => {
-    const booking = {
-      hotelName: room.HotelID,
-      price: room.Price,
-      checkInDate: searchParams.departureDate,
-    };
-
-    const updatedBookings = [...route.params.bookings, booking];
-
-    navigation.navigate('MyBooking', {bookings: updatedBookings});
+    navigation.navigate('MyBooking');
   };
   console.log(route.params);
 

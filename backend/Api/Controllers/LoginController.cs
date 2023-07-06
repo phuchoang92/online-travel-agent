@@ -80,7 +80,7 @@ namespace Api.Controllers
                     new Claim("TokenId", Guid.NewGuid().ToString())
                 }),
 
-                Expires = DateTime.UtcNow.AddMinutes(60),
+                Expires = DateTime.UtcNow.AddMinutes(6000),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(seretKeyBytes),
                 SecurityAlgorithms.HmacSha512Signature
                 )

@@ -1,6 +1,5 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
-import {TextInput} from 'react-native-gesture-handler';
 import SearchModal from './SearchModal';
 import DatePickerModal from './DatePickerModal';
 import NightStayModal from './NightStayModal';
@@ -278,6 +277,7 @@ const CustomSort = ({placeholder, style, navigation}) => {
           // eslint-disable-next-line no-undef
           onPress={() =>
             handleSearch({
+              city: selectedLocation,
               nights: 2,
               departureDate: selectedDate,
               adults: selectedAdults,
