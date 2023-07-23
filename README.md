@@ -3,6 +3,10 @@
 
 ## Backend
 
+### Using ngrok
+Download ngrok from https://ngrok.com/download
+
+
 ## App Booking (Mobile App)
 ### Install Android virtual device
 
