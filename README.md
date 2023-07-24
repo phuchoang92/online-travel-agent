@@ -1,9 +1,17 @@
 # online-travel-agent
-## Hướng dẫn chạy chương trình
+## Run project
 
 ## Backend
 ### Run ASP.Net API
 1. Open the project using Visual Studio
+2. Open the NuGet package
+3. Install the following packages
+    ```
+    Core
+    SqlServer
+    JwtBearer
+    ```
+
 #### Setting up SQL Server Database
 1. Open appsettings.json and you will see the following code:
 ```
