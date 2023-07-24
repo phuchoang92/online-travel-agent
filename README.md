@@ -6,11 +6,11 @@
 Step 1. Open the project using Visual Studio
 Step 2. Open the NuGet package
 Step 3. Install the following packages
-    ```
-    Microsoft.EntityFrameworkCore.SqlServer
-    Microsoft.EntityFrameworkCore
-    Microsoft.AspNetCore.Authentication.JwtBearer
-    ```
+```
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore
+Microsoft.AspNetCore.Authentication.JwtBearer
+```
 
 #### Setting up SQL Server Database
 Step 1. Open appsettings.json and you will see the following code:
