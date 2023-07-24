@@ -7,9 +7,9 @@
 2. Open the NuGet package
 3. Install the following packages
     ```
-    Core
-    SqlServer
-    JwtBearer
+    Microsoft.EntityFrameworkCore.SqlServer
+    Microsoft.EntityFrameworkCore
+    Microsoft.AspNetCore.Authentication.JwtBearer
     ```
 
 #### Setting up SQL Server Database
