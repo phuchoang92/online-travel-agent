@@ -33,25 +33,33 @@ Step 4. Copy the URL that can be used to access your API
 
 ## Run Booking Mobile app
 ### Install Android virtual device
+#### Step 1. Install Android Studio and open it
+#### Step 2. Open Device Manager and Create a new virtual device
 
-#### Install all dependencies 
+### Build app in Android
+#### Step 1. Install all dependencies 
 ```
 yarn install
 ```
-#### Open the file axios.js in the folder BookingApp/src
-#### Change the value of baseURL to the ngrok URL that you have created
-#### Open terminal and run the cmd:
+#### Step 2. Open the file axios.js in the folder BookingApp/src
+#### Step 3. Change the value of baseURL to the ngrok URL that you have created
+#### Step 4. Open terminal and run the cmd:
 ```
 yarn react-native run-android
 ```
 
-## Admin App (Web App)
-### Project setup
+## Run Admin App (Web App)
+### Step 1. Project setup
 ```
 npm install
 ```
 
-### Compiles and minifies for production
+### Step 2.Compiles and minifies for production
 ```
 npm run build
+npm run start
+```
+### Step 3. Because we are using URL from the same host. The CORS policy will prevent us from calling API. To avoid this, open the Command Prompt and run:
+```
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
 ```
