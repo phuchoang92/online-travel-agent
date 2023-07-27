@@ -1,7 +1,7 @@
 # online-travel-agent
-## Run project
+## Build Project
 
-## Backend
+## Run Backend
 ### Run ASP.Net API
 Step 1. Open the project using Visual Studio
 Step 2. Open the NuGet package
@@ -12,7 +12,7 @@ Microsoft.EntityFrameworkCore
 Microsoft.AspNetCore.Authentication.JwtBearer
 ```
 
-#### Setting up SQL Server Database
+### Setting up SQL Server Database
 Step 1. Open appsettings.json and you will see the following code:
 ```
 "ConnectionStrings": {
@@ -22,7 +22,7 @@ Step 1. Open appsettings.json and you will see the following code:
 Step 2. Change password with the password of sa user in your sql server management
 Step 3. Run the project
 
-### Using ngrok
+### Create URL using ngrok
 Step 1. Download ngrok from https://ngrok.com/download
 Step 2. Open ngrok that you have installed
 Step 3. Run the following command:
@@ -31,19 +31,20 @@ ngrok http --host-header=localhost https://localhost:your_port/
 ```
 Step 4. Copy the URL that can be used to access your API
 
-## App Booking (Mobile App)
+## Run Booking Mobile app
 ### Install Android virtual device
 
-### Set up 
+#### Install all dependencies 
 ```
 yarn install
 ```
 #### Open the file axios.js in the folder BookingApp/src
-#### Change the value of baseURL to the ngrok URL that you have gotten
-#### Run the cmd 
+#### Change the value of baseURL to the ngrok URL that you have created
+#### Open terminal and run the cmd:
 ```
 yarn react-native run-android
 ```
+
 ## Admin App (Web App)
 ### Project setup
 ```
