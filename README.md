@@ -38,9 +38,9 @@ Step 4. Copy the URL that can be used to access your API
 ```
 yarn install
 ```
-Open the file axios.js in the folder BookingApp/src
-Change the value of baseURL to the ngrok URL that you have gotten
-Run the cmd 
+#### Open the file axios.js in the folder BookingApp/src
+#### Change the value of baseURL to the ngrok URL that you have gotten
+#### Run the cmd 
 ```
 yarn react-native run-android
 ```
