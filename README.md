@@ -13,23 +13,23 @@ Microsoft.AspNetCore.Authentication.JwtBearer
 ```
 
 ### Setting up SQL Server Database
-Step 1. Open appsettings.json and you will see the following code:
+#### Step 1. Open appsettings.json and you will see the following code:
 ```
 "ConnectionStrings": {
     "MyDb": "Server=localhost;Database=BookingHotel;User=sa;Password=password;Initial Catalog=BookingHotel;Integrated Security=True"
   },
 ```
-Step 2. Change password with the password of sa user in your sql server management
-Step 3. Run the project
+#### Step 2. Change password with the password of sa user in your sql server management
+#### Step 3. Run the project
 
 ### Create URL using ngrok
-Step 1. Download ngrok from https://ngrok.com/download
-Step 2. Open ngrok that you have installed
-Step 3. Run the following command:
+#### Step 1. Download ngrok from https://ngrok.com/download
+#### Step 2. Open ngrok that you have installed
+#### Step 3. Run the following command:
 ```
 ngrok http --host-header=localhost https://localhost:your_port/
 ```
-Step 4. Copy the URL that can be used to access your API
+#### Step 4. Copy the URL that can be used to access your API
 
 ## Run Booking Mobile app
 ### Install Android virtual device
