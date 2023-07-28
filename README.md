@@ -3,9 +3,9 @@
 
 ## Run Backend
 ### Run ASP.Net API
-Step 1. Open the project using Visual Studio
-Step 2. Open the NuGet package
-Step 3. Install the following packages
+#### Step 1. Open the project using Visual Studio
+#### Step 2. Open the NuGet package
+#### Step 3. Install the following packages
 ```
 Microsoft.EntityFrameworkCore.SqlServer
 Microsoft.EntityFrameworkCore
@@ -61,5 +61,5 @@ npm run start
 ```
 ### Step 3. Because we are using URL from the same host. The CORS policy will prevent us from calling API. To avoid this, open the Command Prompt and run:
 ```
-"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
+"chrome.exe" --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
 ```
